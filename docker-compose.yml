@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+  php:
+    build: .
+    volumes:
+      - ./src:/var/www/html
+      - ./000-default.conf:/etc/apache2/sites-available/000-default.conf
+      - ./php.ini:/usr/local/etc/php/php.ini
+    ports:
+      - 8080:80
+    tty: true
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - ./mysql:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=zend_db
+      - MYSQL_USER=zend
+      - MYSQL_PASSWORD=password
