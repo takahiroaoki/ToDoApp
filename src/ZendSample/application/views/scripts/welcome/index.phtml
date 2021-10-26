@@ -4,7 +4,11 @@
         <title>Welcome Page</title>
     </head>
     <body>
-        <h1>Hello Zend Framework!!</h1>
-        <p>This is the welcome page of the application made of Zend Framework 1.8.5</p>
+        <h1>Welcome to my page!!</h1>
+        <p><?= $this->escape($this->message) ?></p>
+        <form method="POST" action="/ZendSample/public/welcome/index">
+            <input type="text" name="user_name">
+            <input type="submit" value="Submit">
+        </form>
     </body>
 </html>
