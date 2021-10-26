@@ -1,0 +1,3 @@
+# mysqlフォルダの中身はGit管理しない
+/mysql/*
+!/mysql/.gitkeep
