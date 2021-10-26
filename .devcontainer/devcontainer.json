@@ -2,5 +2,10 @@
     "runArgs": ["--init"],
     "dockerComposeFile": "../docker-compose.yml",
     "service": "php",
-    "workspaceFolder": "/var/www/html/ZendSample",
+	"workspaceFolder": "/var/www/html/ZendSample",
+	"extensions": [
+		"felixfbecker.php-pack",
+		"abusaidm.html-snippets",
+		"ecmel.vscode-html-css"
+	],
 }
