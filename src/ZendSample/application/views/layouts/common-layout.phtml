@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <?= $this->headTitle() ?><!-- <title> -->
+        <?= $this->headLink() ?><!-- <link> -->
+        <?= $this->headScript() ?><!-- <script> -->
+        <?= $this->headStyle() ?><!-- <style> -->
+    </head>
+    <body>
+        <!-- header part -->
+        <div>
+            <?= $this->render($this->content_header) ?>
+        </div>
+        <!-- content part -->
+        <div>
+            <?= $this->layout()->content ?>
+        </div>
+        <!-- footer part -->
+        <div>
+            <?= $this->render($this->content_footer) ?>
+        </div>
+    </body>
+</html>
