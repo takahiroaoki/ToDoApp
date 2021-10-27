@@ -1,14 +1,20 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Welcome Page</title>
-    </head>
-    <body>
-        <h1>Welcome to my page!!</h1>
-        <p><?= $this->escape($this->message) ?></p>
-        <form method="POST" action="/ZendSample/public/welcome/index">
-            <input type="text" name="user_name">
-            <input type="submit" value="Submit">
-        </form>
-    </body>
-</html>
+<?php
+// page title
+$this->headTitle("Welcome Page");
+// header and footer
+$this->assign("content_header", "common-header.phtml");
+$this->assign("content_footer", "common-footer.phtml");
+$this->assign("content_header_title", "Common Header");
+$this->assign("content_footer_text", "Common Footer");
+// stylesheet
+$this->headLink()->appendStylesheet("/ZendSample/css/common-layout.css");
+?>
+
+<div class="content">
+    <h1>This is the Welcome Page!!</h1>
+    <p><?= $this->escape($this->message) ?></p>
+    <form method="POST" action="/ZendSample/public/welcome/index">
+        <input type="text" name="user_name">
+        <input type="submit" value="Submit">
+    </form>
+</div>
