@@ -6,6 +6,7 @@
 	"extensions": [
 		"felixfbecker.php-pack",
 		"abusaidm.html-snippets",
-		"ecmel.vscode-html-css"
+		"ecmel.vscode-html-css",
+		"jakebathman.mysql-syntax"
 	],
 }
