@@ -8,16 +8,32 @@ require_once 'Zend/Config/Ini.php';
 class WelcomeController extends Zend_Controller_Action {
 
     public function init() {
-        $config = new Zend_Config_Ini(APPLICATION_PATH . '/configs/common-layout-config.ini', 'layout');
-        Zend_Layout::startMvc($config);
+        $layout_config = new Zend_Config_Ini(APPLICATION_PATH . '/configs/common-layout-config.ini', 'layout');
+        Zend_Layout::startMvc($layout_config);
     }
     
     public function indexAction() {
-        if ($this->getRequest()->isPost()) {
-            $msg = 'Welcome, ' . $this->_getParam('user_name') . '!!' . PHP_EOL;
-        } else {
-            $msg = 'Let me know your name!';
+        return;
+    }
+
+    public function signinAction() {
+        if ($this->getRequest()->isGet()) {// To sign in page
+            return;
         }
-        $this->view->assign('message', $msg);
+        // Sign in process
+        // TODO: Verify user
+        $user_email = $this->_getParam('user_email');
+        $user_password = $this->_getParam('user_password');
+        if ($user_email == 'user@example.com' && $user_password == 'password') {
+            // Redirect to user's home page
+            $this->_redirect('/home/index');
+        } else {
+            // Redirect to sign-in page
+            $this->_redirect('/welcome/signin');
+        }
+    }
+
+    public function signoutAction() {
+        $this->_redirect('/welcome/index');
     }
 }
