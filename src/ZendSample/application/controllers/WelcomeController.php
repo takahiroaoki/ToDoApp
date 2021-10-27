@@ -1,9 +1,13 @@
 <?php
 
+// libraries
 require_once 'Zend/Controller/Action.php';
 require_once 'Zend/View.php';
 require_once 'Zend/Layout.php';
 require_once 'Zend/Config/Ini.php';
+
+// original 
+require_once APPLICATION_PATH . '/models/logics/SignInLogic.php';
 
 class WelcomeController extends Zend_Controller_Action {
 
@@ -21,10 +25,10 @@ class WelcomeController extends Zend_Controller_Action {
             return;
         }
         // Sign in process
-        // TODO: Verify user
         $user_email = $this->_getParam('user_email');
         $user_password = $this->_getParam('user_password');
-        if ($user_email == 'user@example.com' && $user_password == 'password') {
+        if (SignInLogic::verify_user($user_email, $user_password)) {
+            // TODO: make session
             // Redirect to user's home page
             $this->_redirect('/home/index');
         } else {
@@ -34,6 +38,7 @@ class WelcomeController extends Zend_Controller_Action {
     }
 
     public function signoutAction() {
+        // TODO: delete session
         $this->_redirect('/welcome/index');
     }
 }
