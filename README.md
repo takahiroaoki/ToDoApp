@@ -13,7 +13,12 @@ This application is executed in docker containers and edited through Remote Deve
 
 ## How to use
 1. Open ZendSample folder (i.e. this project itself) in containers through Remote Development extention of VSCode.
-2. Execute ./mysql/db_init/ddl.sql & ./mysql/db_init/initial_data.sql in the container for MySQL.
+2. Initialize a database in the container for MySQL.
+   ```
+   # After type each line, type "password"
+   $ mysql -u zend -p < /var/lib/mysql/db_init/ddl.sql
+   $ mysql -u zend -p < /var/lib/mysql/db_init/initial_data.sql
+   ```
 3. Start docker containers and access to http://localhost:8080/ZendSample/public/welcome/index .
 4. Sign in by Email='user@example.com' and Password='password'.
    
