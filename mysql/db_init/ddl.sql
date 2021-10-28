@@ -1,15 +1,11 @@
-# type to terminal to use mysql
-mysql -u zend -p
-password
-
 # change database
 USE zend_db;
 
 # 'users' table
 DROP TABLE IF EXISTS users;
 CREATE TABLE users (
-    'user_id' INT(10) NOT NULL AUTO_INCREMENT,
-    'user_email' VARCHAR(100) NOT NULL,
-    'user_password' VARCHAR(100) NOT NULL,
-    PRIMARY KEY('user_id')
+    user_id INT(10) NOT NULL AUTO_INCREMENT,
+    user_email VARCHAR(100) NOT NULL,
+    user_password VARCHAR(100) NOT NULL,
+    PRIMARY KEY(user_id)
 );
