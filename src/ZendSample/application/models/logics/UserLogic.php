@@ -2,7 +2,7 @@
 
 require_once APPLICATION_PATH . '/models/daos/UserDao.php';
 
-class SignInLogic {
+class UserLogic {
     public static function verifyUser($userEmail, $userPassword) {
 
         $registeredUser = UserDao::getInstance()->searchUser($userEmail);
@@ -13,5 +13,11 @@ class SignInLogic {
             $isVerified = false;
         }
         return $isVerified;
+    }
+
+    public static function registerUser($userEmail, $userPassword) {
+
+        $isSuccess = UserDao::getInstance()->registerUser($userEmail, $userPassword);
+        return $isSuccess;
     }
 }
