@@ -1,10 +1,5 @@
 <?php
 
-require_once 'Zend/Controller/Action.php';
-require_once 'Zend/View.php';
-require_once 'Zend/Layout.php';
-require_once 'Zend/Config/Ini.php';
-
 require_once APPLICATION_PATH . '/models/logics/SignInLogic.php';
 
 class WelcomeController extends Zend_Controller_Action {

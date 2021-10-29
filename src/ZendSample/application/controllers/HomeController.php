@@ -1,10 +1,5 @@
 <?php
 
-require_once 'Zend/Controller/Action.php';
-require_once 'Zend/View.php';
-require_once 'Zend/Layout.php';
-require_once 'Zend/Config/Ini.php';
-
 class HomeController extends Zend_Controller_Action {
 
     public function init() {

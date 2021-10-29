@@ -1,8 +1,5 @@
 <?php
 
-require_once 'Zend/Db.php';
-require_once 'Zend/Config/Ini.php';
-
 require_once APPLICATION_PATH . '/models/entities/User.php';
 
 class UserDao {
