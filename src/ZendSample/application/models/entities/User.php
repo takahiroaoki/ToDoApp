@@ -1,23 +1,27 @@
 <?php
 
 class User {
-    private $user_id;
-    private $user_email;
-    private $user_password;
+    private $userEmail;
+    private $userPassword;
 
-    public function get_user_email() {
-        return $this->user_email;
+    function __construct($userEmail, $userPassword) {
+        $this->userEmail = $userEmail;
+        $this->userPassword = $userPassword;
     }
 
-    public function set_user_email($user_email) {
-        $this->user_email = $user_email;
+    public function getUserEmail() {
+        return $this->userEmail;
     }
 
-    public function get_user_password() {
-        return $this->user_password;
+    public function setUserEmail($userEmail) {
+        $this->userEmail = $userEmail;
     }
 
-    public function set_user_password($user_password) {
-        $this->user_password = $user_password;
+    public function getUserPassword() {
+        return $this->userPassword;
+    }
+
+    public function setUserPassword($userPassword) {
+        $this->userPassword = $userPassword;
     }
 }

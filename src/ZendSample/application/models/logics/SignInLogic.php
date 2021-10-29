@@ -3,15 +3,15 @@
 require_once APPLICATION_PATH . '/models/daos/UserDao.php';
 
 class SignInLogic {
-    public static function verify_user($user_email, $user_password) {
+    public static function verifyUser($userEmail, $userPassword) {
 
-        $registered_user = UserDao::get_instance()->search_user($user_email);
+        $registeredUser = UserDao::getInstance()->searchUser($userEmail);
         
-        if ($user_password == $registered_user->get_user_password()) {
-            $is_valid = true;
+        if ($userPassword == $registeredUser->getUserPassword()) {
+            $isVerified = true;
         } else {
-            $is_valid = false;
+            $isVerified = false;
         }
-        return $is_valid;
+        return $isVerified;
     }
 }
