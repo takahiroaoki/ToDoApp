@@ -30,4 +30,19 @@ class UserDao {
         $registeredUser = new User($result['user_email'], $result['user_password']);
         return $registeredUser;
     }
+
+    public function registerUser($userEmail, $userPassword) {
+        $userData = array(
+            'user_email' => $userEmail,
+            'user_password' => $userPassword
+        );
+
+        try {
+            $this->db->insert('users', $userData);
+            $isSuccess = true;            
+        } catch (Exception $e) {
+            $isSuccess = false;
+        }
+        return $isSuccess;
+    }
 }
