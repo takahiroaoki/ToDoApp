@@ -10,13 +10,13 @@ class UserDao {
 
     private function __construct() {
         // make connection to DB
-        $db_config = new Zend_Config_Ini(APPLICATION_PATH . '/configs/db-config.ini', 'db');
+        $dbConfig = new Zend_Config_Ini(APPLICATION_PATH . '/configs/db-config.ini', 'db');
         $adapter = new Zend_Config_Ini(APPLICATION_PATH . '/configs/db-config.ini', 'adapter');
-        $this->db = Zend_Db::factory($adapter->name, $db_config);
+        $this->db = Zend_Db::factory($adapter->name, $dbConfig);
         $this->db->getConnection();
     }
 
-    public static function get_instance() {
+    public static function getInstance() {
         if ($dao) {
             return $dao;
         } else {
@@ -24,12 +24,10 @@ class UserDao {
         }
     }
 
-    public function search_user($user_email) {
+    public function searchUser($userEmail) {
         $query = 'SELECT * FROM users WHERE user_email = ?;';
-        $result = $this->db->fetchRow($query, $user_email);
-        $registered_user = new User();
-        $registered_user->set_user_email($result['user_email']);
-        $registered_user->set_user_password($result['user_password']);
-        return $registered_user;
+        $result = $this->db->fetchRow($query, $userEmail);
+        $registeredUser = new User($result['user_email'], $result['user_password']);
+        return $registeredUser;
     }
 }
