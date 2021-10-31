@@ -19,8 +19,8 @@ class WelcomeController extends Zend_Controller_Action {
             return;
         }
         // Sign in process
-        $userEmail = $this->_getParam('user_email');
-        $userPassword = $this->_getParam('user_password');
+        $userEmail = $this->_getParam(USER_EMAIL);
+        $userPassword = $this->_getParam(USER_PASSWORD);
         if (UserLogic::verifyUser($userEmail, $userPassword)) {
             // TODO: make session
             // Redirect to user's home page
@@ -41,11 +41,12 @@ class WelcomeController extends Zend_Controller_Action {
             return;
         }
         // Sign up process
-        $userEmail = $this->_getParam('user_email');
-        $userPassword = $this->_getParam('user_password');
-        if (UserLogic::registerUser($userEmail, $userPassword)) {
-            $this->_redirect('/home/index');
-        } else {
+        $userEmail = $this->_getParam(USER_EMAIL);
+        $userPassword = $this->_getParam(USER_PASSWORD);
+
+        if (UserLogic::registerUser($userEmail, $userPassword)) {// To sign in page
+            $this->_redirect('/welcome/signin');
+        } else {// To sign up page again
             $this->_redirect('/welcome/signup');
         }
     }

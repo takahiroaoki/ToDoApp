@@ -1,4 +1,11 @@
 <?php
+// Define constants
+// About User
+define('USERS', 'users');
+define('USER_ID', 'user_id');
+define('USER_EMAIL', 'user_email');
+define('USER_PASSWORD', 'user_password');
+
 
 // Define path to application directory
 defined('APPLICATION_PATH')
