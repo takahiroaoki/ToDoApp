@@ -1,6 +1,6 @@
 <?php
 
-
+require_once APPLICATION_PATH . '/models/entities/User.php';
 require_once APPLICATION_PATH . '/models/logics/UserLogic.php';
 
 class WelcomeController extends Zend_Controller_Action {
@@ -21,18 +21,23 @@ class WelcomeController extends Zend_Controller_Action {
         // Sign in process
         $userEmail = $this->_getParam(USER_EMAIL);
         $userPassword = $this->_getParam(USER_PASSWORD);
-        if (UserLogic::verifyUser($userEmail, $userPassword)) {
-            // TODO: make session
-            // Redirect to user's home page
-            $this->_redirect('/home/index');
-        } else {
+        $user = UserLogic::searchUser($userEmail, $userPassword);
+        if (is_null($user)) {
             // Redirect to sign-in page
             $this->_redirect('/welcome/signin');
+        } else {
+            // Make session
+            $defaultNamespace = new Zend_Session_Namespace(DEFAULT_NAMESPACE);
+            $defaultNamespace->user = $user;
+            $defaultNamespace->lock();
+            // Redirect to user's home page
+            $this->_redirect('/home/index');
         }
     }
 
     public function signoutAction() {
-        // TODO: delete session
+        // Delete session
+        Zend_Session::destroy();
         $this->_redirect('/welcome/index');
     }
 

@@ -1,11 +1,18 @@
 <?php
-// Define constants
-// About User
+/**
+ * [START] Define constants
+ */
+// User
 define('USERS', 'users');
 define('USER_ID', 'user_id');
 define('USER_EMAIL', 'user_email');
 define('USER_PASSWORD', 'user_password');
+// Namespace of session
+define('DEFAULT_NAMESPACE', 'default_namespace');
 
+/**
+ * [END] Define constants
+ */
 
 // Define path to application directory
 defined('APPLICATION_PATH')
