@@ -3,16 +3,15 @@
 require_once APPLICATION_PATH . '/models/daos/UserDao.php';
 
 class UserLogic {
-    public static function verifyUser($userEmail, $userPassword) {
+    public static function searchUser($userEmail, $userPassword) {
 
         $registeredUser = UserDao::getInstance()->searchUser($userEmail);
         
-        if ($userPassword == $registeredUser->getUserPassword()) {
-            $isVerified = true;
+        if (!is_null($registeredUser) && $userPassword == $registeredUser->getUserPassword()) {
+            return $registeredUser;
         } else {
-            $isVerified = false;
+            return null;
         }
-        return $isVerified;
     }
 
     public static function registerUser($userEmail, $userPassword) {

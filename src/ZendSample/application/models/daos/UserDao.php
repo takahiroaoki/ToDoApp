@@ -24,10 +24,15 @@ class UserDao {
         }
     }
 
-    public function searchUser($userEmail) {
+    public function searchUser($userEmail) {// If not registered, return null
         $query = 'SELECT * FROM ' . USERS . ' WHERE ' . USER_EMAIL . ' = ?;';
         $result = $this->db->fetchRow($query, $userEmail);
-        $registeredUser = new User($result[USER_ID], $result[USER_EMAIL], $result[USER_PASSWORD]);
+        
+        if (is_null($result[USER_ID])) {
+            $registeredUser = null;
+        } else {
+            $registeredUser = new User($result[USER_ID], $result[USER_EMAIL], $result[USER_PASSWORD]);
+        }
         return $registeredUser;
     }
 

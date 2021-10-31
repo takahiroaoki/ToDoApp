@@ -8,6 +8,11 @@ class HomeController extends Zend_Controller_Action {
     }
     
     public function indexAction() {
-        return;
+        // session check
+        if (Zend_Session::sessionExists()) {
+            return;
+        } else {
+            $this->_redirect('/welcome/signin');
+        }
     }
 }
