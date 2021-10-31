@@ -17,4 +17,8 @@ $this->headLink()->appendStylesheet("/ZendSample/css/common-layout.css");
             <input type="submit" value="Sign out">
         </form>
     </div>
+    <div>
+        <?= $this->allTasks[0]->getTaskTitle() ?><br>
+        <?= $this->allTasks[0]->getTaskContent() ?>
+    </div>
 </div>

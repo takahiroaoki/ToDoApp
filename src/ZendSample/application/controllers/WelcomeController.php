@@ -27,6 +27,9 @@ class WelcomeController extends Zend_Controller_Action {
             $this->_redirect('/welcome/signin');
         } else {
             // Make session
+            if (Zend_Session::sessionExists()) {
+                Zend_Session::destroy();
+            }
             $defaultNamespace = new Zend_Session_Namespace(DEFAULT_NAMESPACE);
             $defaultNamespace->user = $user;
             $defaultNamespace->lock();
