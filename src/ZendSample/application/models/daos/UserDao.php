@@ -25,20 +25,20 @@ class UserDao {
     }
 
     public function searchUser($userEmail) {
-        $query = 'SELECT * FROM users WHERE user_email = ?;';
+        $query = 'SELECT * FROM ' . USERS . ' WHERE ' . USER_EMAIL . ' = ?;';
         $result = $this->db->fetchRow($query, $userEmail);
-        $registeredUser = new User($result['user_email'], $result['user_password']);
+        $registeredUser = new User($result[USER_ID], $result[USER_EMAIL], $result[USER_PASSWORD]);
         return $registeredUser;
     }
 
     public function registerUser($userEmail, $userPassword) {
         $userData = array(
-            'user_email' => $userEmail,
-            'user_password' => $userPassword
+            USER_EMAIL => $userEmail,
+            USER_PASSWORD => $userPassword
         );
 
         try {
-            $this->db->insert('users', $userData);
+            $this->db->insert(USERS, $userData);
             $isSuccess = true;            
         } catch (Exception $e) {
             $isSuccess = false;
