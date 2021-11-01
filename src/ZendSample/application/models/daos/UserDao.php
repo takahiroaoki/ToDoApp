@@ -6,7 +6,7 @@ class UserDao {
     // UserDao is singleton pattern
 
     private Zend_Db_Adapter_Abstract $db;
-    private UserDao $dao;
+    private self $dao;
 
     private function __construct() {
         // make connection to DB
@@ -16,11 +16,11 @@ class UserDao {
         $this->db->getConnection();
     }
 
-    public static function getInstance(): UserDao {
-        if ($dao) {
-            return $dao;
-        } else {
+    public static function getInstance(): self {
+        if (is_null($dao)) {
             return new UserDao();
+        } else {
+            return $dao;
         }
     }
 

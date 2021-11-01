@@ -1,4 +1,5 @@
 <?php
+
 /**
  * [START] Define constants
  */

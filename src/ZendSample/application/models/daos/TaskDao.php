@@ -6,7 +6,7 @@ class TaskDao {
     // TaskDao is singleton pattern
 
     private Zend_Db_Adapter_Abstract $db;
-    private TaskDao $dao;
+    private self $dao;
 
     private function __construct() {
         // make connection to DB
@@ -16,7 +16,7 @@ class TaskDao {
         $this->db->getConnection();
     }
 
-    public static function getInstance(): TaskDao {
+    public static function getInstance(): self {
         if ($dao) {
             return $dao;
         } else {

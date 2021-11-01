@@ -2,6 +2,7 @@
 
 require_once APPLICATION_PATH . '/models/entities/User.php';
 require_once APPLICATION_PATH . '/models/logics/UserLogic.php';
+require_once APPLICATION_PATH . '/utilities/SessionNamespace.php';
 
 class WelcomeController extends Zend_Controller_Action {
 
@@ -30,8 +31,8 @@ class WelcomeController extends Zend_Controller_Action {
             if (Zend_Session::sessionExists()) {
                 Zend_Session::destroy();
             }
-            $defaultNamespace = new Zend_Session_Namespace(DEFAULT_NAMESPACE);
-            $defaultNamespace->user = $user;
+            $defaultNamespace = SessionNamespace::getInstance()->getNamespace(DEFAULT_NAMESPACE);
+            $defaultNamespace->user = serialize($user);
             $defaultNamespace->lock();
             // Redirect to user's home page
             $this->_redirect('/home/index');
