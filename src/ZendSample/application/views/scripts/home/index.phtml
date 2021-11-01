@@ -18,7 +18,13 @@ $this->headLink()->appendStylesheet("/ZendSample/css/common-layout.css");
         </form>
     </div>
     <div>
-        <?= $this->allTasks[0]->getTaskTitle() ?><br>
-        <?= $this->allTasks[0]->getTaskContent() ?>
+        <?php
+            foreach($this->allTasks as $task) {
+                print $task->getTaskTitle();
+                print '<br>';
+                print $task->getTaskContent();
+                print '<br>';
+            }
+        ?>
     </div>
 </div>
