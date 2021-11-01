@@ -5,8 +5,8 @@ require_once APPLICATION_PATH . '/models/entities/Task.php';
 class TaskDao {
     // TaskDao is singleton pattern
 
-    private $db;
-    private $dao;
+    private Zend_Db_Adapter_Abstract $db;
+    private TaskDao $dao;
 
     private function __construct() {
         // make connection to DB
@@ -16,7 +16,7 @@ class TaskDao {
         $this->db->getConnection();
     }
 
-    public static function getInstance() {
+    public static function getInstance(): TaskDao {
         if ($dao) {
             return $dao;
         } else {
@@ -24,7 +24,7 @@ class TaskDao {
         }
     }
 
-    public function getAllTasks($userId) {// If there are no tasks on DB, return array()
+    public function getAllTasks(string $userId): array {// If there are no tasks on DB, return array()
         $query = 'SELECT * FROM ' . TASKS . ' WHERE ' . USER_ID . ' = ?;';
         $result = $this->db->fetchAll($query, $userId);
         

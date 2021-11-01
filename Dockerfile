@@ -1,4 +1,4 @@
-FROM php:5.6-apache
+FROM php:7.4.25-apache
 
 RUN apt-get update
 RUN apt-get install -y vim default-mysql-client
