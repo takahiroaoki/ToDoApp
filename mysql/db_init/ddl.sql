@@ -1,8 +1,11 @@
 # change database
 USE zend_db;
 
-# 'users' table
+# initialize tables
+DROP TABLE IF EXISTS tasks;
 DROP TABLE IF EXISTS users;
+
+# 'users' table
 CREATE TABLE users (
     user_id INT(10) NOT NULL AUTO_INCREMENT,
     user_email VARCHAR(100) UNIQUE NOT NULL,
@@ -11,7 +14,7 @@ CREATE TABLE users (
 );
 
 # 'tasks' table
-DROP TABLE IF EXISTS tasks;
+
 CREATE TABLE tasks (
     task_id INT(10) NOT NULL AUTO_INCREMENT,
     user_id INT(10) NOT NULL,
