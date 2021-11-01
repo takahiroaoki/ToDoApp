@@ -1,21 +1,19 @@
 <?php
 
 require_once APPLICATION_PATH . '/models/entities/Task.php';
+require_once APPLICATION_PATH . '/models/daos/BaseDao.php';
 
-class TaskDao {
-    // TaskDao is singleton pattern
-
-    private Zend_Db_Adapter_Abstract $db;
+class TaskDao extends BaseDao {
+    // Fields
     private self $dao;
 
+    // Constructor
     private function __construct() {
-        // make connection to DB
-        $dbConfig = new Zend_Config_Ini(APPLICATION_PATH . '/configs/db-config.ini', 'db');
-        $adapter = new Zend_Config_Ini(APPLICATION_PATH . '/configs/db-config.ini', 'adapter');
-        $this->db = Zend_Db::factory($adapter->name, $dbConfig);
-        $this->db->getConnection();
+        parent::__construct();
     }
 
+    // Methods
+    // TaskDao is singleton pattern
     public static function getInstance(): self {
         if ($dao) {
             return $dao;
