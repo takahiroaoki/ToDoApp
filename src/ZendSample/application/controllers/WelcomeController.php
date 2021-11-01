@@ -5,16 +5,16 @@ require_once APPLICATION_PATH . '/models/logics/UserLogic.php';
 
 class WelcomeController extends Zend_Controller_Action {
 
-    public function init() {
+    public function init(): void {
         $layoutConfig = new Zend_Config_Ini(APPLICATION_PATH . '/configs/common-layout-config.ini', 'layout');
         Zend_Layout::startMvc($layoutConfig);
     }
     
-    public function indexAction() {
+    public function indexAction(): void {
         return;
     }
 
-    public function signinAction() {
+    public function signinAction(): void {
         if ($this->getRequest()->isGet()) {// To sign in page
             return;
         }
@@ -38,13 +38,13 @@ class WelcomeController extends Zend_Controller_Action {
         }
     }
 
-    public function signoutAction() {
+    public function signoutAction(): void {
         // Delete session
         Zend_Session::destroy();
         $this->_redirect('/welcome/index');
     }
 
-    public function signupAction() {
+    public function signupAction(): void {
         if ($this->getRequest()->isGet()) {// To sign up page
             return;
         }

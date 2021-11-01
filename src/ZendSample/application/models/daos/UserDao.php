@@ -5,8 +5,8 @@ require_once APPLICATION_PATH . '/models/entities/User.php';
 class UserDao {
     // UserDao is singleton pattern
 
-    private $db;
-    private $dao;
+    private Zend_Db_Adapter_Abstract $db;
+    private UserDao $dao;
 
     private function __construct() {
         // make connection to DB
@@ -16,7 +16,7 @@ class UserDao {
         $this->db->getConnection();
     }
 
-    public static function getInstance() {
+    public static function getInstance(): UserDao {
         if ($dao) {
             return $dao;
         } else {
@@ -24,11 +24,11 @@ class UserDao {
         }
     }
 
-    public function searchUser($userEmail) {// If not registered, return null
+    public function searchUser(string $userEmail): ?User {
         $query = 'SELECT * FROM ' . USERS . ' WHERE ' . USER_EMAIL . ' = ?;';
         $result = $this->db->fetchRow($query, $userEmail);
         
-        if (is_null($result[USER_ID])) {
+        if (is_null($result[USER_ID])) {// If not registered, return null
             $registeredUser = null;
         } else {
             $registeredUser = new User($result[USER_ID], $result[USER_EMAIL], $result[USER_PASSWORD]);
@@ -36,7 +36,7 @@ class UserDao {
         return $registeredUser;
     }
 
-    public function registerUser($userEmail, $userPassword) {
+    public function registerUser(string $userEmail, string $userPassword): bool {
         $userData = array(
             USER_EMAIL => $userEmail,
             USER_PASSWORD => $userPassword
