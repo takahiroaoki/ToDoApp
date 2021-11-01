@@ -1,21 +1,19 @@
 <?php
 
 require_once APPLICATION_PATH . '/models/entities/User.php';
+require_once APPLICATION_PATH . '/models/daos/BaseDao.php';
 
-class UserDao {
-    // UserDao is singleton pattern
-
-    private Zend_Db_Adapter_Abstract $db;
+class UserDao extends BaseDao {
+    // Fields
     private self $dao;
 
+    // Constructor
     private function __construct() {
-        // make connection to DB
-        $dbConfig = new Zend_Config_Ini(APPLICATION_PATH . '/configs/db-config.ini', 'db');
-        $adapter = new Zend_Config_Ini(APPLICATION_PATH . '/configs/db-config.ini', 'adapter');
-        $this->db = Zend_Db::factory($adapter->name, $dbConfig);
-        $this->db->getConnection();
+        parent::__construct();
     }
 
+    // Methods
+    // UserDao is singleton pattern
     public static function getInstance(): self {
         if (is_null($dao)) {
             return new UserDao();

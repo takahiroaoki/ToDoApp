@@ -17,7 +17,7 @@ class HomeController extends Zend_Controller_Action {
             // Get userId from session
             $defaultNamespace = SessionNamespace::getInstance()->getNamespace(DEFAULT_NAMESPACE);
             $user = User::cast(unserialize($defaultNamespace->user));
-            $userId = $user->getUserId();// $userId=1 as test.
+            $userId = $user->getUserId();
             $allTasks = TaskLogic::getAllTasks($userId);
             $this->view->assign('allTasks', $allTasks);
             return;
