@@ -1,6 +1,8 @@
 <?php
 
+require_once APPLICATION_PATH . '/models/entities/User.php';
 require_once APPLICATION_PATH . '/models/logics/TaskLogic.php';
+require_once APPLICATION_PATH . '/utilities/SessionNamespace.php';
 
 class HomeController extends Zend_Controller_Action {
 
@@ -13,7 +15,9 @@ class HomeController extends Zend_Controller_Action {
         // session check
         if (Zend_Session::sessionExists()) {
             // Get userId from session
-            $userId = 1;// $userId=1 as test.
+            $defaultNamespace = SessionNamespace::getInstance()->getNamespace(DEFAULT_NAMESPACE);
+            $user = User::cast(unserialize($defaultNamespace->user));
+            $userId = $user->getUserId();// $userId=1 as test.
             $allTasks = TaskLogic::getAllTasks($userId);
             $this->view->assign('allTasks', $allTasks);
             return;
