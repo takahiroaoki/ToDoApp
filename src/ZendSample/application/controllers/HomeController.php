@@ -43,7 +43,7 @@ class HomeController extends Zend_Controller_Action {
             $taskTitle = $this->_getParam(TASK_TITLE);
             $taskContent = $this->_getParam(TASK_CONTENT);
 
-            // TODO register new task to DB
+            // Register new task to DB
             if (TaskLogic::registerTask($userId, $taskTitle, $taskContent)) {// Success in registering a new tak
                 $this->_redirect('/home/index');
                 return;
