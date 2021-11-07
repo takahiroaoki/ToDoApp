@@ -18,6 +18,11 @@ $this->headLink()->appendStylesheet("/ZendSample/css/common-layout.css");
         </form>
     </div>
     <div>
+        <form method="GET" action="/ZendSample/public/home/newtask">
+            <input type="submit" value="New task">
+        </form>
+    </div>
+    <div>
         <?php
             foreach($this->allTasks as $task) {
                 print $task->getTaskTitle();

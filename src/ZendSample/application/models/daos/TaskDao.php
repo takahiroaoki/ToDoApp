@@ -33,4 +33,19 @@ class TaskDao extends BaseDao {
         }
         return $allTasks;
     }
+
+    public function registerTask(string $userId, string $taskTitle, string $taskContent): bool {
+        $taskData = array(
+            USER_ID => $userId,
+            TASK_TITLE => $taskTitle,
+            TASK_CONTENT => $taskContent
+        );
+        try {
+            $this->db->insert(TASKS, $taskData);
+            $isSuccess = true;            
+        } catch (Exception $e) {
+            $isSuccess = false;
+        }
+        return $isSuccess;
+    }
 }
