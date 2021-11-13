@@ -9,8 +9,8 @@ class TaskLogic {
         return $allTasks;
     }
 
-    public static function registerTask(string $userId, string $taskTitle, string $taskContent): bool {
-        $isSuccess = TaskDao::getInstance()->registerTask($userId, $taskTitle, $taskContent);
+    public static function registerTask(string $userId, string $taskTitle, string $taskContent, string $taskStatus): bool {
+        $isSuccess = TaskDao::getInstance()->registerTask($userId, $taskTitle, $taskContent, $taskStatus);
         return $isSuccess;
     }
 }

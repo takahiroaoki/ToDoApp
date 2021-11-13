@@ -19,6 +19,11 @@ $this->headLink()->appendStylesheet("/ZendSample/css/common-layout.css");
             <form method="POST" action="/ZendSample/public/home/newtask">
                 <input class="form-control" type="text" placeholder="Title" name="task_title" ><br>
                 <input class="form-control" type="text" placeholder="Content" name="task_content" ><br>
+                <select class="form-select" name="<?= TASK_STATUS ?>">
+                    <option value="<?= TASK_TO_DO ?>" selected><?= TASK_TO_DO ?></option>
+                    <option value="<?= TASK_IN_PROGRESS ?>"><?= TASK_IN_PROGRESS ?></option>
+                    <option value="<?= TASK_DONE ?>"><?= TASK_DONE ?></option>
+                </select><br>
                 <input class="btn btn-primary" type="submit" value="Register">
             </form>
         </div>
