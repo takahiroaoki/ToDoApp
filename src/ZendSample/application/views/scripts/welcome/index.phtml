@@ -11,13 +11,13 @@ $this->headLink()->appendStylesheet("/ZendSample/css/common-layout.css");
 ?>
 
 <div class="content">
-    <h1>This is Top Page.</h1>
-    <div>
-        <form method="GET" action="/ZendSample/public/welcome/signin">
-            <input type="submit" value="Sign in">
-        </form>
-        <form method="GET" action="/ZendSample/public/welcome/signup">
-            <input type="submit" value="Sign up">
-        </form>
+    <div class="container">
+        <h1>This is Top Page.</h1>
+    </div>
+    <div class="container">
+        <div class="d-grid gap-3 col-6 mx-auto">
+            <a class="btn btn-primary" href="/ZendSample/public/welcome/signin" role="botton">Sign in</a>
+            <a class="btn btn-primary" href="/ZendSample/public/welcome/signup" role="botton">Sign up</a>
+        </div>
     </div>
 </div>
