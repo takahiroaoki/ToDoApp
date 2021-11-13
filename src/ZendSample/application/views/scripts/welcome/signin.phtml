@@ -17,8 +17,8 @@ $this->headLink()->appendStylesheet("/ZendSample/css/common-layout.css");
     <div class="container">
         <div class="d-grid gap-3 col-4 mx-auto">
             <form method="POST" action="/ZendSample/public/welcome/signin">
-                <input class="form-control" type="email" placeholder="Email" name="user_email" ><br>
-                <input class="form-control" type="password" placeholder="Password" name="user_password" ><br>
+                <input class="form-control" type="email" placeholder="Email" name="<?= USER_EMAIL ?>" ><br>
+                <input class="form-control" type="password" placeholder="Password" name="<?= USER_PASSWORD ?>" ><br>
                 <input class="btn btn-primary" type="submit" value="Sign in">
             </form>
         </div>
