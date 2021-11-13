@@ -28,17 +28,18 @@ class TaskDao extends BaseDao {
         
         $allTasks = array();
         foreach ($result as $row) {
-            $task = new Task($row[TASK_ID], $row[TASK_TITLE], $row[TASK_CONTENT]);
+            $task = new Task($row[TASK_ID], $row[TASK_TITLE], $row[TASK_CONTENT], $row[TASK_STATUS]);
             array_push($allTasks, $task);
         }
         return $allTasks;
     }
 
-    public function registerTask(string $userId, string $taskTitle, string $taskContent): bool {
+    public function registerTask(string $userId, string $taskTitle, string $taskContent, string $taskStatus): bool {
         $taskData = array(
             USER_ID => $userId,
             TASK_TITLE => $taskTitle,
-            TASK_CONTENT => $taskContent
+            TASK_CONTENT => $taskContent,
+            TASK_STATUS => $taskStatus
         );
         try {
             $this->db->insert(TASKS, $taskData);
