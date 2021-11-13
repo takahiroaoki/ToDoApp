@@ -11,16 +11,22 @@ $this->headLink()->appendStylesheet("/ZendSample/css/common-layout.css");
 ?>
 
 <div class="content">
-    <h1>This is the Sign-in page.</h1>
-    <div>
-        <form method="POST" action="/ZendSample/public/welcome/signin">
-            <input type="email" placeholder="Email" name="user_email" ><br>
-            <input type="password" placeholder="Password" name="user_password" ><br>
-            <input type="submit" value="Sign in">
-        </form>
-        <p>Do you have no accounts?</p>
-        <form method="GET" action="/ZendSample/public/welcome/signup">
-            <input type="submit" value="Sign up">
-        </form>
+    <div class="container">
+        <h1>This is the Sign-in page.</h1>
+    </div>
+    <div class="container">
+        <div class="d-grid gap-3 col-4 mx-auto">
+            <form method="POST" action="/ZendSample/public/welcome/signin">
+                <input class="form-control" type="email" placeholder="Email" name="user_email" ><br>
+                <input class="form-control" type="password" placeholder="Password" name="user_password" ><br>
+                <input class="btn btn-primary" type="submit" value="Sign in">
+            </form>
+        </div>
+    </div>
+    <div class="container">
+        <div>
+            <p>Do you have no accounts?</p>
+            <a class="btn btn-primary" href="/ZendSample/public/welcome/signup" role="botton">Sign up</a>
+        </div>
     </div>
 </div>

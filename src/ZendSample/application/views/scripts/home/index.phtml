@@ -11,18 +11,16 @@ $this->headLink()->appendStylesheet("/ZendSample/css/common-layout.css");
 ?>
 
 <div class="content">
-    <h1>This is your home.</h1>
-    <div>
-        <form method="GET" action="/ZendSample/public/welcome/signout">
-            <input type="submit" value="Sign out">
-        </form>
+    <div class="container">
+        <h1>This is your home.</h1>
     </div>
-    <div>
-        <form method="GET" action="/ZendSample/public/home/newtask">
-            <input type="submit" value="New task">
-        </form>
+    <div class="container">
+        <div class="d-grid gap-3 col-2 mx-auto">
+            <a class="btn btn-primary" href="/ZendSample/public/welcome/signout" role="botton">Sign out</a>
+            <a class="btn btn-primary" href="/ZendSample/public/home/newtask" role="botton">New task</a>
+        </div>
     </div>
-    <div>
+    <div class="container">
         <?php
             foreach($this->allTasks as $task) {
                 print $task->getTaskTitle();
