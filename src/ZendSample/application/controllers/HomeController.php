@@ -26,6 +26,38 @@ class HomeController extends Zend_Controller_Action {
         return;
     }
 
+    public function updatetaskAction(): void {
+        // session check
+        if (! Zend_Session::sessionExists()) {
+            $this->_redirect('/welcome/signin');
+            return;
+        }
+
+        $defaultNamespace = SessionNamespace::getInstance()->getNamespace(DEFAULT_NAMESPACE);
+        $user = User::cast(unserialize($defaultNamespace->user));
+        $userId = $user->getUserId();
+
+        if ($this->getRequest()->isGet()) {// To home page
+            $this->_redirect('/home/index');
+            return;
+        } else {// Update a task and to home page
+            $taskId = $this->_getParam(TASK_ID);
+            $taskTitle = $this->_getParam(TASK_TITLE);
+            $taskContent = $this->_getParam(TASK_CONTENT);
+            $taskStatus = $this->_getParam(TASK_STATUS);
+
+            // Update a task on DB
+            if (TaskLogic::updateTask($userId, $taskId, $taskTitle, $taskContent, $taskStatus)) {// Success
+                $this->_redirect('/home/index');
+                return;
+            } else {// Failure
+                // TODO: error message
+                $this->_redirect('/home/index');
+                return;
+            }
+        }
+    }
+
     public function newtaskAction(): void {
         // session check
         if (! Zend_Session::sessionExists()) {
@@ -45,7 +77,7 @@ class HomeController extends Zend_Controller_Action {
             $taskStatus = $this->_getParam(TASK_STATUS);
 
             // Register new task to DB
-            if (TaskLogic::registerTask($userId, $taskTitle, $taskContent, $taskStatus)) {// Success in registering a new tak
+            if (TaskLogic::registerTask($userId, $taskTitle, $taskContent, $taskStatus)) {// Success in registering a new task
                 $this->_redirect('/home/index');
                 return;
             } else {// Failure
