@@ -21,6 +21,6 @@ CREATE TABLE tasks (
     task_title VARCHAR(50) NOT NULL,
     task_content VARCHAR(400),
     task_status VARCHAR(20),
-    PRIMARY KEY(task_id),
+    PRIMARY KEY(task_id, user_id),
     FOREIGN KEY fk_tasks_users(user_id) REFERENCES users(user_id)
 );

@@ -22,78 +22,174 @@ $this->headLink()->appendStylesheet("/ZendSample/css/common-layout.css");
     </div>
     <div class="container">
         <div class="row align-items-start">
+            <!-- [START] Task list whose status is 'To do' -->
             <div class="col">
                 <h2><?= TASK_TO_DO ?></h2>
                 <?php
                     foreach($this->allTasks as $task) {
                         if ($task->getTaskStatus() == TASK_TO_DO) {
                 ?>
-                <div class="card">
-                    <div class="card-body">
-                        <div class="card-title">
-                            <?= $task->getTaskTitle() ?>
-                        </div>
-                        <div class="card-text">
-                            <?= $task->getTaskContent() ?>
-                        </div>
-                        <div class="card-text">
-                            <?= $task->getTaskStatus() ?>
-                        </div>
-                    </div>
-                </div>
+                            <div class="card">
+                                <!-- [START] Shown until 'Edit' button is pushed -->
+                                <div>
+                                    <div class="card-body">
+                                        <div class="card-title">
+                                            <?= $task->getTaskTitle() ?>
+                                        </div>
+                                        <div class="card-text">
+                                            <?= $task->getTaskContent() ?>
+                                        </div>
+                                        <div class="card-text">
+                                            <?= $task->getTaskStatus() ?>
+                                        </div>
+                                    </div>
+                                    <div class="d-grid col-2" >
+                                        <a
+                                        class="btn btn-success btn-sm"
+                                        data-bs-toggle="collapse"
+                                        href="#id_<?= $task->getTaskId() ?>"
+                                        role="button"
+                                        aria-expanded="false"
+                                        >
+                                            Edit
+                                        </a>
+                                    </div>
+                                </div>
+                                <!-- [END] Shown until 'Edit' button is pushed -->
+                                <!-- [START] Shown when 'Edit' button is pushed -->
+                                <div class="collapse" id="id_<?= $task->getTaskId() ?>">
+                                    <form method="POST" action="/ZendSample/public/home/updatetask">
+                                        <input type="hidden" name="<?= TASK_ID ?>" value="<?= $task->getTaskId() ?>">
+                                        <input class="form-control" type="text" name="<?= TASK_TITLE ?>" value="<?= $task->getTaskTitle() ?>" ><br>
+                                        <input class="form-control" type="text" name="<?= TASK_CONTENT ?>" value="<?= $task->getTaskContent() ?>" ><br>
+                                        <select class="form-select" name="<?= TASK_STATUS ?>">
+                                            <option value="<?= TASK_TO_DO ?>" selected><?= TASK_TO_DO ?></option>
+                                            <option value="<?= TASK_IN_PROGRESS ?>"><?= TASK_IN_PROGRESS ?></option>
+                                            <option value="<?= TASK_DONE ?>"><?= TASK_DONE ?></option>
+                                        </select><br>
+                                        <input class="btn btn-success" type="submit" value="Update">
+                                    </form>
+                                </div>
+                                <!-- [END] Shown when 'Edit' button is pushed -->
+                            </div>
                 <?php
                         }              
                     }
                 ?>
             </div>
+            <!-- [END] Task list whose status is 'To do' -->
+            <!-- [START] Task list whose status is 'In progress' -->
             <div class="col">
                 <h2><?= TASK_IN_PROGRESS ?></h2>
                 <?php
                     foreach($this->allTasks as $task) {
                         if ($task->getTaskStatus() == TASK_IN_PROGRESS) {
                 ?>
-                <div class="card">
-                    <div class="card-body">
-                        <div class="card-title">
-                            <?= $task->getTaskTitle() ?>
-                        </div>
-                        <div class="card-text">
-                            <?= $task->getTaskContent() ?>
-                        </div>
-                        <div class="card-text">
-                            <?= $task->getTaskStatus() ?>
-                        </div>
-                    </div>
-                </div>
+                            <div class="card">
+                                <!-- [START] Shown until 'Edit' button is pushed -->
+                                <div>
+                                    <div class="card-body">
+                                        <div class="card-title">
+                                            <?= $task->getTaskTitle() ?>
+                                        </div>
+                                        <div class="card-text">
+                                            <?= $task->getTaskContent() ?>
+                                        </div>
+                                        <div class="card-text">
+                                            <?= $task->getTaskStatus() ?>
+                                        </div>
+                                    </div>
+                                    <div class="d-grid col-2" >
+                                        <a
+                                        class="btn btn-success btn-sm"
+                                        data-bs-toggle="collapse"
+                                        href="#id_<?= $task->getTaskId() ?>"
+                                        role="button"
+                                        aria-expanded="false"
+                                        >
+                                            Edit
+                                        </a>
+                                    </div>
+                                </div>
+                                <!-- [END] Shown until 'Edit' button is pushed -->
+                                <!-- [START] Shown when 'Edit' button is pushed -->
+                                <div class="collapse" id="id_<?= $task->getTaskId() ?>">
+                                    <form method="POST" action="/ZendSample/public/home/updatetask">
+                                        <input type="hidden" name="<?= TASK_ID ?>" value="<?= $task->getTaskId() ?>">
+                                        <input class="form-control" type="text" name="<?= TASK_TITLE ?>" value="<?= $task->getTaskTitle() ?>" ><br>
+                                        <input class="form-control" type="text" name="<?= TASK_CONTENT ?>" value="<?= $task->getTaskContent() ?>" ><br>
+                                        <select class="form-select" name="<?= TASK_STATUS ?>">
+                                            <option value="<?= TASK_TO_DO ?>"><?= TASK_TO_DO ?></option>
+                                            <option value="<?= TASK_IN_PROGRESS ?>" selected><?= TASK_IN_PROGRESS ?></option>
+                                            <option value="<?= TASK_DONE ?>"><?= TASK_DONE ?></option>
+                                        </select><br>
+                                        <input class="btn btn-success" type="submit" value="Update">
+                                    </form>
+                                </div>
+                                <!-- [END] Shown when 'Edit' button is pushed -->
+                            </div>
                 <?php
                         }              
                     }
                 ?>
             </div>
+            <!-- [END] Task list whose status is 'In progress' -->
+            <!-- [START] Task list whose status is 'Done' -->
             <div class="col">
                 <h2><?= TASK_DONE ?></h2>
                 <?php
                     foreach($this->allTasks as $task) {
                         if ($task->getTaskStatus() == TASK_DONE) {
                 ?>
-                <div class="card">
-                    <div class="card-body">
-                        <div class="card-title">
-                            <?= $task->getTaskTitle() ?>
-                        </div>
-                        <div class="card-text">
-                            <?= $task->getTaskContent() ?>
-                        </div>
-                        <div class="card-text">
-                            <?= $task->getTaskStatus() ?>
-                        </div>
-                    </div>
-                </div>
+                            <div class="card">
+                                <!-- [START] Shown until 'Edit' button is pushed -->
+                                <div>
+                                    <div class="card-body">
+                                        <div class="card-title">
+                                            <?= $task->getTaskTitle() ?>
+                                        </div>
+                                        <div class="card-text">
+                                            <?= $task->getTaskContent() ?>
+                                        </div>
+                                        <div class="card-text">
+                                            <?= $task->getTaskStatus() ?>
+                                        </div>
+                                    </div>
+                                    <div class="d-grid col-2" >
+                                        <a
+                                        class="btn btn-success btn-sm"
+                                        data-bs-toggle="collapse"
+                                        href="#id_<?= $task->getTaskId() ?>"
+                                        role="button"
+                                        aria-expanded="false"
+                                        >
+                                            Edit
+                                        </a>
+                                    </div>
+                                </div>
+                                <!-- [END] Shown until 'Edit' button is pushed -->
+                                <!-- [START] Shown when 'Edit' button is pushed -->
+                                <div class="collapse" id="id_<?= $task->getTaskId() ?>">
+                                    <form method="POST" action="/ZendSample/public/home/updatetask">
+                                        <input type="hidden" name="<?= TASK_ID ?>" value="<?= $task->getTaskId() ?>">
+                                        <input class="form-control" type="text" name="<?= TASK_TITLE ?>" value="<?= $task->getTaskTitle() ?>" ><br>
+                                        <input class="form-control" type="text" name="<?= TASK_CONTENT ?>" value="<?= $task->getTaskContent() ?>" ><br>
+                                        <select class="form-select" name="<?= TASK_STATUS ?>">
+                                            <option value="<?= TASK_TO_DO ?>"><?= TASK_TO_DO ?></option>
+                                            <option value="<?= TASK_IN_PROGRESS ?>"><?= TASK_IN_PROGRESS ?></option>
+                                            <option value="<?= TASK_DONE ?>" selected><?= TASK_DONE ?></option>
+                                        </select><br>
+                                        <input class="btn btn-success" type="submit" value="Update">
+                                    </form>
+                                </div>
+                                <!-- [END] Shown when 'Edit' button is pushed -->
+                            </div>
                 <?php
                         }              
                     }
                 ?>
             </div>
+            <!-- [END] Task list whose status is 'Done' -->
         </div>
     </div>
 </div>
