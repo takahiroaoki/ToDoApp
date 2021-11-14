@@ -8,7 +8,7 @@ This application is executed in docker containers and edited through Remote Deve
 ## Requirement
 
 - Windows 10
-- [Docker Desktop for Windows](https://www.docker.com/products/docker-desktop)
+- [Docker Desktop for Windows](https://www.docker.com/products/docker-desktop) 4.2.0
 - VSCode with the extention of Remote Development
 
 ## How to use

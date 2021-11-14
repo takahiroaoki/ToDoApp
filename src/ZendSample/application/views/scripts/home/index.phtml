@@ -21,15 +21,79 @@ $this->headLink()->appendStylesheet("/ZendSample/css/common-layout.css");
         </div>
     </div>
     <div class="container">
-        <?php
-            foreach($this->allTasks as $task) {
-                print $task->getTaskTitle();
-                print '<br>';
-                print $task->getTaskContent();
-                print '<br>';
-                print $task->getTaskStatus();
-                print '<br>';
-            }
-        ?>
+        <div class="row align-items-start">
+            <div class="col">
+                <h2><?= TASK_TO_DO ?></h2>
+                <?php
+                    foreach($this->allTasks as $task) {
+                        if ($task->getTaskStatus() == TASK_TO_DO) {
+                ?>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <?= $task->getTaskTitle() ?>
+                        </div>
+                        <div class="card-text">
+                            <?= $task->getTaskContent() ?>
+                        </div>
+                        <div class="card-text">
+                            <?= $task->getTaskStatus() ?>
+                        </div>
+                    </div>
+                </div>
+                <?php
+                        }              
+                    }
+                ?>
+            </div>
+            <div class="col">
+                <h2><?= TASK_IN_PROGRESS ?></h2>
+                <?php
+                    foreach($this->allTasks as $task) {
+                        if ($task->getTaskStatus() == TASK_IN_PROGRESS) {
+                ?>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <?= $task->getTaskTitle() ?>
+                        </div>
+                        <div class="card-text">
+                            <?= $task->getTaskContent() ?>
+                        </div>
+                        <div class="card-text">
+                            <?= $task->getTaskStatus() ?>
+                        </div>
+                    </div>
+                </div>
+                <?php
+                        }              
+                    }
+                ?>
+            </div>
+            <div class="col">
+                <h2><?= TASK_DONE ?></h2>
+                <?php
+                    foreach($this->allTasks as $task) {
+                        if ($task->getTaskStatus() == TASK_DONE) {
+                ?>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <?= $task->getTaskTitle() ?>
+                        </div>
+                        <div class="card-text">
+                            <?= $task->getTaskContent() ?>
+                        </div>
+                        <div class="card-text">
+                            <?= $task->getTaskStatus() ?>
+                        </div>
+                    </div>
+                </div>
+                <?php
+                        }              
+                    }
+                ?>
+            </div>
+        </div>
     </div>
 </div>
