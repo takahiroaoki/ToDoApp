@@ -9,7 +9,7 @@ This application is executed in docker containers and edited through Remote Deve
 
 - Windows 10
 - [Docker Desktop for Windows](https://www.docker.com/products/docker-desktop) 4.2.0
-- VSCode with the extention of Remote Development
+- VSCode with the extention of Remote Development 0.21.0
 
 ## How to use
 1. Open ZendSample folder (i.e. this project itself) in containers through Remote Development extention of VSCode.
