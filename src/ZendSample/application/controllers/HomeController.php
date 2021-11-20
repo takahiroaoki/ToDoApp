@@ -22,6 +22,7 @@ class HomeController extends Zend_Controller_Action {
         $user = User::cast(unserialize($defaultNamespace->user));
         $userId = $user->getUserId();
         $allTasks = TaskLogic::getAllTasks($userId);
+        $this->view->assign('taskStatus', array(TASK_TO_DO, TASK_IN_PROGRESS, TASK_DONE));
         $this->view->assign('allTasks', $allTasks);
         return;
     }
