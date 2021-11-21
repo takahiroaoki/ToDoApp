@@ -3,25 +3,20 @@
 
 /* common CSS */
 body {
-    background: #DDDDDD;
-    color: #666633;
     text-align: center;
     margin: 0%;
 }
 
 .content_header {
-    background: #DDDDDD;
     font-size: 16px;
     font-weight: bold;
 }
 
 .content {
-    background: #FFFFEE;
-    color: #990000;
+    background: #fff;
 }
 
 .content_footer {
-    background: #DDDDDD;
     text-align: center;
     font-size: 8pt;
 }
