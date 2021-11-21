@@ -72,4 +72,22 @@ class TaskDao extends BaseDao {
         }
         return $isSuccess;
     }
+
+    public function deleteTask(string $userId, string $taskId): bool {
+        $where = array(
+            USER_ID . ' = ' . $userId,
+            TASK_ID . ' = ' . $taskId
+        );
+        try {
+            $n = $this->db->delete(TASKS, $where);
+            if ($n == 1) {
+                $isSuccess = true;
+            } else {
+                $isSuccess = false;
+            }
+        } catch (Exception $e) {
+            $isSuccess = false;
+        }
+        return $isSuccess;
+    }
 }

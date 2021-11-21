@@ -87,4 +87,31 @@ class HomeController extends Zend_Controller_Action {
             }
         }
     }
+
+    public function deletetaskAction(): void {
+        // session check
+        if (! Zend_Session::sessionExists()) {
+            $this->_redirect('/welcome/signin');
+            return;
+        }
+
+        $defaultNamespace = SessionNamespace::getInstance()->getNamespace(DEFAULT_NAMESPACE);
+        $user = User::cast(unserialize($defaultNamespace->user));
+        $userId = $user->getUserId();
+
+        if ($this->getRequest()->isGet()) {// Redirect to indexAction
+            $this->_redirect('/home/index');
+        } else {// Delete the task
+            $taskId = $this->_getParam(TASK_ID);
+
+            // Delete the task on DB
+            if (TaskLogic::deleteTask($userId, $taskId)) {// Success in deleting the task
+                $this->_redirect('/home/index');
+                return;
+            } else {// Failure
+                $this->_redirect('/home/index');
+                return;
+            }
+        }
+    }
 }
