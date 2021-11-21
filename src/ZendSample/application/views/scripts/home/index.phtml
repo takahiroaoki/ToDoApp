@@ -8,6 +8,8 @@ $this->assign("content_header_title", "Common Header");
 $this->assign("content_footer_text", "Common Footer");
 // stylesheet
 $this->headLink()->appendStylesheet("/ZendSample/css/common-layout.css");
+// script
+$this->headScript()->appendFile("/ZendSample/js/home/taskCard.js");
 ?>
 
 <div class="content">
@@ -42,7 +44,7 @@ $this->headLink()->appendStylesheet("/ZendSample/css/common-layout.css");
                                             <?= $task->getTaskStatus() ?>
                                         </div>
                                     </div>
-                                    <div class="d-grid col-2" >
+                                    <div class="d-grid col-1">
                                         <a
                                         class="btn btn-success btn-sm"
                                         data-bs-toggle="collapse"
@@ -52,6 +54,12 @@ $this->headLink()->appendStylesheet("/ZendSample/css/common-layout.css");
                                         >
                                             Edit
                                         </a>
+                                    </div>
+                                    <div class="d-grid col-1">
+                                        <form method="POST" action="/ZendSample/public/home/deletetask">
+                                            <input type="hidden" name="<?= TASK_ID ?>" value="<?= $task->getTaskId() ?>">
+                                            <input class="btn btn-secondary btn-sm" type="submit" value="Delete">
+                                        </form>
                                     </div>
                                 </div>
                                 <!-- [START] Shown when 'Edit' button is pushed -->

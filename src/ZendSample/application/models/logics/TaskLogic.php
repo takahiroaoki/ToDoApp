@@ -18,4 +18,9 @@ class TaskLogic {
         $isSuccess = TaskDao::getInstance()->registerTask($userId, $taskTitle, $taskContent, $taskStatus);
         return $isSuccess;
     }
+
+    public static function deleteTask(string $userId, string $taskId): bool {
+        $isSuccess = TaskDao::getInstance()->deleteTask($userId, $taskId);
+        return $isSuccess;
+    }
 }
