@@ -8,15 +8,18 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 fs-6">
+                <?php if ($this->isLogin == '1') { ?>
                 <li class="nav-item">
                     <a class="nav-link active" href="/ZendSample/public/welcome/signout">Sign out</a>
                 </li>
+                <?php } else { ?>
                 <li class="nav-item">
                     <a class="nav-link active" href="/ZendSample/public/welcome/signin">Sign in</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="/ZendSample/public/welcome/signup">Sign up</a>
                 </li>
+                <?php } ?>
             </ul>
         </div>
     </div>
