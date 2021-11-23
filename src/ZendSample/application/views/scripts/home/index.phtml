@@ -4,13 +4,16 @@ $this->headTitle("Home");
 // header and footer
 $this->assign("content_header", "common-header.phtml");
 $this->assign("content_footer", "common-footer.phtml");
-$this->assign("content_footer_text", "© ZendSample 2021");
 // stylesheet
+$this->headLink()->appendStylesheet("/ZendSample/css/normalize.css");
 $this->headLink()->appendStylesheet("/ZendSample/css/common-layout.css");
 $this->headLink()->appendStylesheet("/ZendSample/css/home/index.css");
 ?>
 
 <div class="content">
+<div class="container page-title">
+        <h1>Your Tasks</h1>
+    </div>
     <div class="container">
         <div class="d-grid d-md-flex justify-content-md-end">
             <a class="btn btn-primary" href="/ZendSample/public/home/newtask" role="button">New task</a>
