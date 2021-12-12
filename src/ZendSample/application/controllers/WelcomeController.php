@@ -25,7 +25,7 @@ class WelcomeController extends Zend_Controller_Action {
         $user = UserLogic::searchUser($userEmail, $userPassword);
         if (is_null($user)) {
             // Redirect to sign-in page
-            $this->_redirect('/welcome/signin');
+            $this->_redirect('/kanban/welcome/signin');
         } else {
             // Make session
             if (Zend_Session::sessionExists()) {
@@ -35,14 +35,14 @@ class WelcomeController extends Zend_Controller_Action {
             $defaultNamespace->user = serialize($user);
             $defaultNamespace->lock();
             // Redirect to user's home page
-            $this->_redirect('/home/index');
+            $this->_redirect('/kanban/home/index');
         }
     }
 
     public function signoutAction(): void {
         // Delete session
         Zend_Session::destroy();
-        $this->_redirect('/welcome/index');
+        $this->_redirect('/kanban/welcome/index');
     }
 
     public function signupAction(): void {
@@ -54,9 +54,9 @@ class WelcomeController extends Zend_Controller_Action {
         $userPassword = $this->_getParam(USER_PASSWORD);
 
         if (UserLogic::registerUser($userEmail, $userPassword)) {// To sign in page
-            $this->_redirect('/welcome/signin');
+            $this->_redirect('/kanban/welcome/signin');
         } else {// To sign up page again
-            $this->_redirect('/welcome/signup');
+            $this->_redirect('/kanban/welcome/signup');
         }
     }
 }
