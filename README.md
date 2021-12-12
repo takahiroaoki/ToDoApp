@@ -19,7 +19,7 @@ This application is executed in docker containers and edited through Remote Deve
    $ mysql -u zend -p < /var/lib/mysql/db_init/ddl.sql
    $ mysql -u zend -p < /var/lib/mysql/db_init/initial_data.sql
    ```
-3. Start docker containers and access to http://localhost:8080/ZendSample/public/welcome/index .
+3. Start docker containers and access to http://localhost:8080/kanban/welcome/index .
 4. Sign in by Email='user@example.com' and Password='password'.
    
-※ The url of http://localhost:8080/ZendSample/public leads you to default index page of Zend Framework 1.8.5.
+※ The root url of http://localhost:8080/ leads you to default index page of Zend Framework 1.8.5.

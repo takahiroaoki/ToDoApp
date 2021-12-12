@@ -16,7 +16,7 @@ $this->headLink()->appendStylesheet("/ZendSample/css/home/index.css");
     </div>
     <div class="container">
         <div class="d-grid d-md-flex justify-content-md-end">
-            <a class="btn btn-primary" href="/ZendSample/public/home/newtask" role="button">New task</a>
+            <a class="btn btn-primary" href="/kanban/home/newtask" role="button">New task</a>
         </div>
     </div>
     <div class="container">
@@ -54,7 +54,7 @@ $this->headLink()->appendStylesheet("/ZendSample/css/home/index.css");
                                         </a>
                                     </div>
                                     <div class="d-grid col-1">
-                                        <form method="POST" action="/ZendSample/public/home/deletetask">
+                                        <form method="POST" action="/kanban/home/deletetask">
                                             <input type="hidden" name="<?= TASK_ID ?>" value="<?= $task->getTaskId() ?>">
                                             <input class="btn btn-secondary btn-sm" type="submit" value="Delete">
                                         </form>
@@ -62,7 +62,7 @@ $this->headLink()->appendStylesheet("/ZendSample/css/home/index.css");
                                 </div>
                                 <!-- [START] Shown when 'Edit' button is pushed -->
                                 <div class="collapse" id="id_<?= $task->getTaskId() ?>">
-                                    <form method="POST" action="/ZendSample/public/home/updatetask">
+                                    <form method="POST" action="/kanban/home/updatetask">
                                         <input type="hidden" name="<?= TASK_ID ?>" value="<?= $task->getTaskId() ?>">
                                         <input class="form-control" type="text" name="<?= TASK_TITLE ?>" value="<?= $task->getTaskTitle() ?>" ><br>
                                         <input class="form-control" type="text" name="<?= TASK_CONTENT ?>" value="<?= $task->getTaskContent() ?>" ><br>

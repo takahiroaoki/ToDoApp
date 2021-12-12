@@ -20,6 +20,9 @@ require_once 'Zend/Application.php';
 /** Define constants */
 require_once APPLICATION_PATH . '/utilities/Constants.php';
 
+/** Routing */
+require_once APPLICATION_PATH . '/Routing.php';
+
 // Create application, bootstrap, and run
 $application = new Zend_Application(
     APPLICATION_ENV, 

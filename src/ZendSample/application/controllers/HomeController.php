@@ -21,7 +21,7 @@ class HomeController extends Zend_Controller_Action {
         try {
             $user = User::cast(unserialize($defaultNamespace->user));
         } catch(Exception $e) {
-            $this->_redirect('/welcome/signin');
+            $this->_redirect('/kanban/welcome/signin');
             return;
         }
         $this->userId = $user->getUserId();
@@ -37,7 +37,7 @@ class HomeController extends Zend_Controller_Action {
 
     public function updatetaskAction(): void {
         if ($this->getRequest()->isGet()) {// To home page
-            $this->_redirect('/home/index');
+            $this->_redirect('/kanban/home/index');
             return;
         } else {// Update a task and to home page
             $taskId = $this->_getParam(TASK_ID);
@@ -47,11 +47,11 @@ class HomeController extends Zend_Controller_Action {
 
             // Update a task on DB
             if (TaskLogic::updateTask($this->userId, $taskId, $taskTitle, $taskContent, $taskStatus)) {// Success
-                $this->_redirect('/home/index');
+                $this->_redirect('/kanban/home/index');
                 return;
             } else {// Failure
                 // TODO: error message
-                $this->_redirect('/home/index');
+                $this->_redirect('/kanban/home/index');
                 return;
             }
         }
@@ -68,10 +68,10 @@ class HomeController extends Zend_Controller_Action {
 
             // Register new task to DB
             if (TaskLogic::registerTask($this->userId, $taskTitle, $taskContent, $taskStatus)) {// Success in registering a new task
-                $this->_redirect('/home/index');
+                $this->_redirect('/kanban/home/index');
                 return;
             } else {// Failure
-                $this->_redirect('/home/newtask');
+                $this->_redirect('/kanban/home/newtask');
                 return;
             }
         }
@@ -80,16 +80,16 @@ class HomeController extends Zend_Controller_Action {
     public function deletetaskAction(): void {
 
         if ($this->getRequest()->isGet()) {// Redirect to indexAction
-            $this->_redirect('/home/index');
+            $this->_redirect('/kanban/home/index');
         } else {// Delete the task
             $taskId = $this->_getParam(TASK_ID);
 
             // Delete the task on DB
             if (TaskLogic::deleteTask($this->userId, $taskId)) {// Success in deleting the task
-                $this->_redirect('/home/index');
+                $this->_redirect('/kanban/home/index');
                 return;
             } else {// Failure
-                $this->_redirect('/home/index');
+                $this->_redirect('/kanban/home/index');
                 return;
             }
         }
