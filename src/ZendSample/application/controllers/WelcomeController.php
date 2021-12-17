@@ -39,10 +39,10 @@ class WelcomeController extends Zend_Controller_Action {
         $defaultNamespace = SessionNamespace::getInstance()->getNamespace(DEFAULT_NAMESPACE);
         $defaultNamespace->user = serialize($user);
         $defaultNamespace->lock();
+        
         // Redirect to user's home page
         $this->_redirect('/kanban/home/index');
         return;
-        
     }
 
     public function signoutAction(): void {

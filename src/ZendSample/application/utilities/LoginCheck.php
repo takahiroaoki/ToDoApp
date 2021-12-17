@@ -1,7 +1,6 @@
 <?php
 
 require_once APPLICATION_PATH . '/models/entities/User.php';
-require_once APPLICATION_PATH . '/models/logics/TaskLogic.php';
 require_once APPLICATION_PATH . '/utilities/SessionNamespace.php';
 
 class LoginCheck {
