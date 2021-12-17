@@ -3,6 +3,7 @@
 require_once APPLICATION_PATH . '/models/entities/User.php';
 require_once APPLICATION_PATH . '/models/logics/UserLogic.php';
 require_once APPLICATION_PATH . '/utilities/SessionNamespace.php';
+require_once APPLICATION_PATH . '/utilities/LoginCheck.php';
 
 class WelcomeController extends Zend_Controller_Action {
 
@@ -16,7 +17,14 @@ class WelcomeController extends Zend_Controller_Action {
     }
 
     public function signinAction(): void {
-        if ($this->getRequest()->isGet()) {// To sign in page
+        if ($this->getRequest()->isGet()) {// If GET method
+            // If the user already signs in, redirect to home.
+            $user = LoginCheck::getUserInSession();
+            if (!is_null($user)) {
+                $this->_redirect('/kanban/home/index');
+                return;
+            }
+            // To signin page
             return;
         }
         // Sign in process
@@ -26,17 +34,15 @@ class WelcomeController extends Zend_Controller_Action {
         if (is_null($user)) {
             // Redirect to sign-in page
             $this->_redirect('/kanban/welcome/signin');
-        } else {
-            // Make session
-            if (Zend_Session::sessionExists()) {
-                Zend_Session::destroy();
-            }
-            $defaultNamespace = SessionNamespace::getInstance()->getNamespace(DEFAULT_NAMESPACE);
-            $defaultNamespace->user = serialize($user);
-            $defaultNamespace->lock();
-            // Redirect to user's home page
-            $this->_redirect('/kanban/home/index');
+            return;
         }
+        $defaultNamespace = SessionNamespace::getInstance()->getNamespace(DEFAULT_NAMESPACE);
+        $defaultNamespace->user = serialize($user);
+        $defaultNamespace->lock();
+        // Redirect to user's home page
+        $this->_redirect('/kanban/home/index');
+        return;
+        
     }
 
     public function signoutAction(): void {
@@ -46,7 +52,14 @@ class WelcomeController extends Zend_Controller_Action {
     }
 
     public function signupAction(): void {
-        if ($this->getRequest()->isGet()) {// To sign up page
+        if ($this->getRequest()->isGet()) {// If GET method
+            // If the user already signs in, redirect to home.
+            $user = LoginCheck::getUserInSession();
+            if (!is_null($user)) {
+                $this->_redirect('/kanban/home/index');
+                return;
+            }
+            // To signup page
             return;
         }
         // Sign up process
