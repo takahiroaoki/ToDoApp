@@ -2,7 +2,7 @@
 
 require_once APPLICATION_PATH . '/models/entities/User.php';
 require_once APPLICATION_PATH . '/models/logics/TaskLogic.php';
-require_once APPLICATION_PATH . '/utilities/SessionNamespace.php';
+require_once APPLICATION_PATH . '/utilities/LoginCheck.php';
 
 class HomeController extends Zend_Controller_Action {
 
@@ -17,14 +17,14 @@ class HomeController extends Zend_Controller_Action {
         parent::preDispatch();
 
         // Login check
-        $defaultNamespace = SessionNamespace::getInstance()->getNamespace(DEFAULT_NAMESPACE);
-        try {
-            $user = User::cast(unserialize($defaultNamespace->user));
-        } catch(Exception $e) {
+        $user = LoginCheck::getUserInSession();
+        if (!is_null($user)) {
+            $this->userId = $user->getUserId();
+            return;
+        } else {
             $this->_redirect('/kanban/welcome/signin');
             return;
         }
-        $this->userId = $user->getUserId();
     }
     
     public function indexAction(): void {
