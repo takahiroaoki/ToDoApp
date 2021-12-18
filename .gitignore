@@ -1,3 +1,6 @@
 # mysql directory
 /mysql/*
 !/mysql/db_init
+
+# log data
+/log/app.log

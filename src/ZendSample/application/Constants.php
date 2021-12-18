@@ -17,5 +17,9 @@ define('TASK_TO_DO', 'To do');
 define('TASK_IN_PROGRESS', 'In progress');
 define('TASK_DONE', 'Done');
 
+// Log
+define('LOG_PATH', APPLICATION_PATH . '/../log/app.log');
+define('LOG_ACCESS', 'ACCESS');
+
 // Namespace of session
 define('DEFAULT_NAMESPACE', 'default_namespace');
