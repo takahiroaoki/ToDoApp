@@ -18,7 +18,7 @@ set_include_path(implode(PATH_SEPARATOR, array(
 require_once 'Zend/Application.php';
 
 /** Define constants */
-require_once APPLICATION_PATH . '/utilities/Constants.php';
+require_once APPLICATION_PATH . '/Constants.php';
 
 /** Routing */
 require_once APPLICATION_PATH . '/Routing.php';
