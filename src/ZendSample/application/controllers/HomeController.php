@@ -4,10 +4,11 @@ require_once APPLICATION_PATH . '/controllers/BaseController.php';
 require_once APPLICATION_PATH . '/models/entities/User.php';
 require_once APPLICATION_PATH . '/models/logics/TaskLogic.php';
 require_once APPLICATION_PATH . '/utilities/LoginCheck.php';
+require_once APPLICATION_PATH . '/utilities/Log.php';
 
 class HomeController extends BaseController
 {
-    public ?string $userId = null;
+    private ?string $userId = null;
 
     public function preDispatch(): void
     {
@@ -15,12 +16,20 @@ class HomeController extends BaseController
 
         // Login check
         $user = LoginCheck::getUserInSession();
+        $isLogin = false;
         if (!is_null($user)) {
             $this->userId = $user->getUserId();
-            return;
-        } else {
+            $isLogin = true;
+        }
+
+        // log
+        Log::getLogWriter()->log(
+            Log::getMessage($this->userId, LOG_ACCESS . ', ' . $_SERVER['REQUEST_URI']),
+            Zend_Log::INFO
+        );
+
+        if (!$isLogin) {
             $this->_redirect('/kanban/welcome/signin');
-            return;
         }
     }
     
