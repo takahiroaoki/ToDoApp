@@ -6,13 +6,15 @@ require_once APPLICATION_PATH . '/models/logics/UserLogic.php';
 require_once APPLICATION_PATH . '/utilities/SessionNamespace.php';
 require_once APPLICATION_PATH . '/utilities/LoginCheck.php';
 
-class WelcomeController extends BaseController {
-    
-    public function indexAction(): void {
+class WelcomeController extends BaseController
+{
+    public function indexAction(): void
+    {
         return;
     }
 
-    public function signinAction(): void {
+    public function signinAction(): void
+    {
         if ($this->getRequest()->isGet()) {// If GET method
             // If the user already signs in, redirect to home.
             $user = LoginCheck::getUserInSession();
@@ -41,13 +43,15 @@ class WelcomeController extends BaseController {
         return;
     }
 
-    public function signoutAction(): void {
+    public function signoutAction(): void
+    {
         // Delete session
         Zend_Session::destroy();
         $this->_redirect('/kanban/welcome/index');
     }
 
-    public function signupAction(): void {
+    public function signupAction(): void
+    {
         if ($this->getRequest()->isGet()) {// If GET method
             // If the user already signs in, redirect to home.
             $user = LoginCheck::getUserInSession();

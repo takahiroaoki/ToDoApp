@@ -5,11 +5,12 @@ require_once APPLICATION_PATH . '/models/entities/User.php';
 require_once APPLICATION_PATH . '/models/logics/TaskLogic.php';
 require_once APPLICATION_PATH . '/utilities/LoginCheck.php';
 
-class HomeController extends BaseController {
-
+class HomeController extends BaseController
+{
     public ?string $userId = null;
 
-    public function preDispatch(): void {
+    public function preDispatch(): void
+    {
         parent::preDispatch();
 
         // Login check
@@ -23,7 +24,8 @@ class HomeController extends BaseController {
         }
     }
     
-    public function indexAction(): void {
+    public function indexAction(): void
+    {
         $allTasks = TaskLogic::getAllTasks($this->userId);
         $this->view->assign('isLogin', '1');
         $this->view->assign('taskStatus', array(TASK_TO_DO, TASK_IN_PROGRESS, TASK_DONE));
@@ -31,7 +33,8 @@ class HomeController extends BaseController {
         return;
     }
 
-    public function updatetaskAction(): void {
+    public function updatetaskAction(): void
+    {
         if ($this->getRequest()->isGet()) {// To home page
             $this->_redirect('/kanban/home/index');
             return;
@@ -53,8 +56,8 @@ class HomeController extends BaseController {
         }
     }
 
-    public function newtaskAction(): void {
-
+    public function newtaskAction(): void
+    {
         if ($this->getRequest()->isGet()) {// To new task page
             return;
         } else {// Register new task and to home page
@@ -73,8 +76,8 @@ class HomeController extends BaseController {
         }
     }
 
-    public function deletetaskAction(): void {
-
+    public function deletetaskAction(): void
+    {
         if ($this->getRequest()->isGet()) {// Redirect to indexAction
             $this->_redirect('/kanban/home/index');
         } else {// Delete the task

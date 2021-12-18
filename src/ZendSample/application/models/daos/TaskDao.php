@@ -3,18 +3,21 @@
 require_once APPLICATION_PATH . '/models/entities/Task.php';
 require_once APPLICATION_PATH . '/models/daos/BaseDao.php';
 
-class TaskDao extends BaseDao {
+class TaskDao extends BaseDao
+{
     // Fields
     private self $dao;
 
     // Constructor
-    private function __construct() {
+    private function __construct()
+    {
         parent::__construct();
     }
 
     // Methods
     // TaskDao is singleton pattern
-    public static function getInstance(): self {
+    public static function getInstance(): self
+    {
         if ($dao) {
             return $dao;
         } else {
@@ -22,7 +25,9 @@ class TaskDao extends BaseDao {
         }
     }
 
-    public function getAllTasks(string $userId): array {// If there are no tasks on DB, return array()
+    public function getAllTasks(string $userId): array
+    {
+        // If there are no tasks on DB, return array()
         $query = 'SELECT * FROM ' . TASKS . ' WHERE ' . USER_ID . ' = ?;';
         $result = $this->db->fetchAll($query, $userId);
         
@@ -34,7 +39,8 @@ class TaskDao extends BaseDao {
         return $allTasks;
     }
 
-    public function updateTask(string $userId, string $taskId, string $taskTitle, string $taskContent, string $taskStatus): bool {
+    public function updateTask(string $userId, string $taskId, string $taskTitle, string $taskContent, string $taskStatus): bool
+    {
         $taskData = array(
             TASK_TITLE => $taskTitle,
             TASK_CONTENT => $taskContent,
@@ -57,7 +63,8 @@ class TaskDao extends BaseDao {
         return $isSuccess;
     }
 
-    public function registerTask(string $userId, string $taskTitle, string $taskContent, string $taskStatus): bool {
+    public function registerTask(string $userId, string $taskTitle, string $taskContent, string $taskStatus): bool
+    {
         $taskData = array(
             USER_ID => $userId,
             TASK_TITLE => $taskTitle,
@@ -66,14 +73,15 @@ class TaskDao extends BaseDao {
         );
         try {
             $this->db->insert(TASKS, $taskData);
-            $isSuccess = true;            
+            $isSuccess = true;
         } catch (Exception $e) {
             $isSuccess = false;
         }
         return $isSuccess;
     }
 
-    public function deleteTask(string $userId, string $taskId): bool {
+    public function deleteTask(string $userId, string $taskId): bool
+    {
         $where = array(
             USER_ID . ' = ' . $userId,
             TASK_ID . ' = ' . $taskId

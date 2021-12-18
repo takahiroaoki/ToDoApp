@@ -1,6 +1,7 @@
 <?php
 
-class Task {
+class Task
+{
     // Fields
     private string $taskId;
     private string $taskTitle;
@@ -8,7 +9,8 @@ class Task {
     private string $taskStatus;// 0: To do, 1: In progress, 2: Done
 
     // Constructor
-    public function __construct(string $taskId, string $taskTitle, string $taskContent, string $taskStatus) {
+    public function __construct(string $taskId, string $taskTitle, string $taskContent, string $taskStatus)
+    {
         $this->taskId = $taskId;
         $this->taskTitle = $taskTitle;
         $this->taskContent = $taskContent;
@@ -16,31 +18,38 @@ class Task {
     }
 
     // Getter & Setter
-    public function getTaskId(): string {
+    public function getTaskId(): string
+    {
         return $this->taskId;
     }
 
-    public function getTaskTitle(): string {
+    public function getTaskTitle(): string
+    {
         return $this->taskTitle;
     }
 
-    public function setTaskTitle(string $taskTitle): void {
+    public function setTaskTitle(string $taskTitle): void
+    {
         $this->taskTitle = $taskTitle;
     }
 
-    public function getTaskContent(): string {
+    public function getTaskContent(): string
+    {
         return $this->taskContent;
     }
 
-    public function setTaskContent(string $taskContent): void {
+    public function setTaskContent(string $taskContent): void
+    {
         $this->taskContent = $taskContent;
     }
 
-    public function getTaskStatus(): string {
+    public function getTaskStatus(): string
+    {
         return $this->taskStatus;
     }
 
-    public function setTaskStatus(string $taskStatus): void {
+    public function setTaskStatus(string $taskStatus): void
+    {
         $this->taskStatus = $taskStatus;
     }
 }
