@@ -6,7 +6,7 @@ class User
     // Fields
     private string $userId;
     private string $userEmail;
-    private string $userPassword;
+    private string $userPassword;// hashed by password_hash() function
 
     // Constructor
     public function __construct(string $userId, string $userEmail, string $userPassword)
