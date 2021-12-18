@@ -7,12 +7,14 @@ $front = Zend_Controller_Front::getInstance();
 $router = $front->getRouter();
 
 /** routing */
-$router->addRoute('normal-routing',
-        new Zend_Controller_Router_Route('kanban/:controller/:action',
+$router->addRoute(
+    'normal-routing',
+    new Zend_Controller_Router_Route(
+            'kanban/:controller/:action',
             array(
                 'module' => 'default',
                 'controller' => 'welcome',
                 'action' => 'index'
             )
         )
-    );
+);

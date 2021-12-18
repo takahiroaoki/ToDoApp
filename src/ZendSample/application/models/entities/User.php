@@ -1,6 +1,7 @@
 <?php
 
-class User {
+class User
+{
 
     // Fields
     private string $userId;
@@ -8,35 +9,42 @@ class User {
     private string $userPassword;
 
     // Constructor
-    public function __construct(string $userId, string $userEmail, string $userPassword) {
+    public function __construct(string $userId, string $userEmail, string $userPassword)
+    {
         $this->userId = $userId;
         $this->userEmail = $userEmail;
         $this->userPassword = $userPassword;
     }
 
     // Getter & Setter
-    public function getUserId(): string {
+    public function getUserId(): string
+    {
         return $this->userId;
     }
 
-    public function getUserEmail(): string {
+    public function getUserEmail(): string
+    {
         return $this->userEmail;
     }
 
-    public function setUserEmail(string $userEmail): void {
+    public function setUserEmail(string $userEmail): void
+    {
         $this->userEmail = $userEmail;
     }
 
-    public function getUserPassword(): string {
+    public function getUserPassword(): string
+    {
         return $this->userPassword;
     }
 
-    public function setUserPassword(string $userPassword): void {
+    public function setUserPassword(string $userPassword): void
+    {
         $this->userPassword = $userPassword;
     }
 
     // Methods
-    public static function cast(object $obj): self {
+    public static function cast(object $obj): self
+    {
         try {
             return $obj;
         } catch (Exception $e) {

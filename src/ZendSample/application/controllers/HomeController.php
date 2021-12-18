@@ -1,19 +1,16 @@
 <?php
 
+require_once APPLICATION_PATH . '/controllers/BaseController.php';
 require_once APPLICATION_PATH . '/models/entities/User.php';
 require_once APPLICATION_PATH . '/models/logics/TaskLogic.php';
 require_once APPLICATION_PATH . '/utilities/LoginCheck.php';
 
-class HomeController extends Zend_Controller_Action {
-
+class HomeController extends BaseController
+{
     public ?string $userId = null;
 
-    public function init(): void {
-        $layoutConfig = new Zend_Config_Ini(APPLICATION_PATH . '/configs/common-layout-config.ini', 'layout');
-        Zend_Layout::startMvc($layoutConfig);
-    }
-
-    public function preDispatch(): void {
+    public function preDispatch(): void
+    {
         parent::preDispatch();
 
         // Login check
@@ -27,7 +24,8 @@ class HomeController extends Zend_Controller_Action {
         }
     }
     
-    public function indexAction(): void {
+    public function indexAction(): void
+    {
         $allTasks = TaskLogic::getAllTasks($this->userId);
         $this->view->assign('isLogin', '1');
         $this->view->assign('taskStatus', array(TASK_TO_DO, TASK_IN_PROGRESS, TASK_DONE));
@@ -35,7 +33,8 @@ class HomeController extends Zend_Controller_Action {
         return;
     }
 
-    public function updatetaskAction(): void {
+    public function updatetaskAction(): void
+    {
         if ($this->getRequest()->isGet()) {// To home page
             $this->_redirect('/kanban/home/index');
             return;
@@ -57,8 +56,8 @@ class HomeController extends Zend_Controller_Action {
         }
     }
 
-    public function newtaskAction(): void {
-
+    public function newtaskAction(): void
+    {
         if ($this->getRequest()->isGet()) {// To new task page
             return;
         } else {// Register new task and to home page
@@ -77,8 +76,8 @@ class HomeController extends Zend_Controller_Action {
         }
     }
 
-    public function deletetaskAction(): void {
-
+    public function deletetaskAction(): void
+    {
         if ($this->getRequest()->isGet()) {// Redirect to indexAction
             $this->_redirect('/kanban/home/index');
         } else {// Delete the task
