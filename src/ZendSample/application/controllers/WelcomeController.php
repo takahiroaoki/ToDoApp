@@ -1,16 +1,12 @@
 <?php
 
+require_once APPLICATION_PATH . '/controllers/BaseController.php';
 require_once APPLICATION_PATH . '/models/entities/User.php';
 require_once APPLICATION_PATH . '/models/logics/UserLogic.php';
 require_once APPLICATION_PATH . '/utilities/SessionNamespace.php';
 require_once APPLICATION_PATH . '/utilities/LoginCheck.php';
 
-class WelcomeController extends Zend_Controller_Action {
-
-    public function init(): void {
-        $layoutConfig = new Zend_Config_Ini(APPLICATION_PATH . '/configs/common-layout-config.ini', 'layout');
-        Zend_Layout::startMvc($layoutConfig);
-    }
+class WelcomeController extends BaseController {
     
     public function indexAction(): void {
         return;

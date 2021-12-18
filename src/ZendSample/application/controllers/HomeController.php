@@ -1,17 +1,13 @@
 <?php
 
+require_once APPLICATION_PATH . '/controllers/BaseController.php';
 require_once APPLICATION_PATH . '/models/entities/User.php';
 require_once APPLICATION_PATH . '/models/logics/TaskLogic.php';
 require_once APPLICATION_PATH . '/utilities/LoginCheck.php';
 
-class HomeController extends Zend_Controller_Action {
+class HomeController extends BaseController {
 
     public ?string $userId = null;
-
-    public function init(): void {
-        $layoutConfig = new Zend_Config_Ini(APPLICATION_PATH . '/configs/common-layout-config.ini', 'layout');
-        Zend_Layout::startMvc($layoutConfig);
-    }
 
     public function preDispatch(): void {
         parent::preDispatch();
