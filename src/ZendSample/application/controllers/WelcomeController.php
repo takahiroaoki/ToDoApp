@@ -40,7 +40,6 @@ class WelcomeController extends BaseController
         }
         $defaultNamespace = SessionNamespace::getInstance()->getNamespace(DEFAULT_NAMESPACE);
         $defaultNamespace->user = serialize($user);
-        $defaultNamespace->lock();
         
         // Redirect to user's home page
         $this->_redirect('/kanban/home/index');
