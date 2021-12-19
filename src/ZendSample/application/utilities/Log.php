@@ -2,11 +2,16 @@
 
 class Log
 {
+    private ?Zend_Log $logger = null;
+
     public static function getLogWriter(): Zend_Log
     {
-        $logger = new Zend_Log(
-            new Zend_Log_Writer_Stream(LOG_PATH)
-        );
+        if (is_null($logger)) {
+            $logger = new Zend_Log(
+                new Zend_Log_Writer_Stream(LOG_PATH)
+            );
+        }
+        
         // Set log level filter
         $logger->addFilter(new Zend_Log_Filter_Priority(Zend_Log::INFO));
 
