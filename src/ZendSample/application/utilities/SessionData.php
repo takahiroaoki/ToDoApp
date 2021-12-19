@@ -3,7 +3,7 @@
 require_once APPLICATION_PATH . '/models/entities/User.php';
 require_once APPLICATION_PATH . '/utilities/SessionNamespace.php';
 
-class LoginCheck
+class SessionData
 {
     public static function getUserInSession(): ?User
     {
@@ -11,9 +11,19 @@ class LoginCheck
         $user = $defaultNamespace->user;
         if (!is_null($user)) {
             $user = User::cast(unserialize($user));
-        } else {
-            Zend_Session::destroy();
         }
+
         return $user;
+    }
+
+    public static function getUserIdInSession(): ?string
+    {
+        $user = self::getUserInSession();
+        $userId = null;
+        if (!is_null($user)) {
+            $userId = $user->getUserId();
+        }
+
+        return $userId;
     }
 }
