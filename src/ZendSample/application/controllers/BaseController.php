@@ -15,6 +15,9 @@ class BaseController extends Zend_Controller_Action
     {
         parent::preDispatch();
 
+        // regenerate session ID in every request
+        Zend_Session::regenerateId();
+
         // log
         $userId = SessionData::getUserIdInSession();
         Log::getLogWriter()->log(
