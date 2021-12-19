@@ -4,7 +4,7 @@ require_once APPLICATION_PATH . '/controllers/BaseController.php';
 require_once APPLICATION_PATH . '/models/entities/User.php';
 require_once APPLICATION_PATH . '/models/logics/UserLogic.php';
 require_once APPLICATION_PATH . '/utilities/SessionNamespace.php';
-require_once APPLICATION_PATH . '/utilities/LoginCheck.php';
+require_once APPLICATION_PATH . '/utilities/SessionData.php';
 
 class WelcomeController extends BaseController
 {
@@ -15,16 +15,20 @@ class WelcomeController extends BaseController
 
     public function signinAction(): void
     {
-        if ($this->getRequest()->isGet()) {// If GET method
-            // If the user already signs in, redirect to home.
-            $user = LoginCheck::getUserInSession();
-            if (!is_null($user)) {
-                $this->_redirect('/kanban/home/index');
-                return;
-            }
+        // If the user already signs in, redirect to home.
+        $user = SessionData::getUserInSession();
+        if (!is_null($user)) {
+            $this->_redirect('/kanban/home/index');
+            return;
+        }
+
+        // If GET method
+        if ($this->getRequest()->isGet()) {
             // To signin page
             return;
         }
+
+        // If POST method
         // Sign in process
         $userEmail = $this->_getParam(USER_EMAIL);
         $userPassword = $this->_getParam(USER_PASSWORD);
@@ -52,23 +56,28 @@ class WelcomeController extends BaseController
 
     public function signupAction(): void
     {
-        if ($this->getRequest()->isGet()) {// If GET method
-            // If the user already signs in, redirect to home.
-            $user = LoginCheck::getUserInSession();
-            if (!is_null($user)) {
-                $this->_redirect('/kanban/home/index');
-                return;
-            }
+        // If the user already signs in, redirect to home.
+        $user = SessionData::getUserInSession();
+        if (!is_null($user)) {
+            $this->_redirect('/kanban/home/index');
+            return;
+        }
+
+        // If GET method
+        if ($this->getRequest()->isGet()) {
             // To signup page
             return;
         }
+
+        // If POST method
         // Sign up process
         $userEmail = $this->_getParam(USER_EMAIL);
         $userPassword = $this->_getParam(USER_PASSWORD);
 
-        if (UserLogic::registerUser($userEmail, $userPassword)) {// To sign in page
+        if (UserLogic::registerUser($userEmail, $userPassword)) {
+            // If registering is success, redirect to sign in page
             $this->_redirect('/kanban/welcome/signin');
-        } else {// To sign up page again
+        } else {// If failure to sign up page again
             $this->_redirect('/kanban/welcome/signup');
         }
     }

@@ -3,39 +3,25 @@
 require_once APPLICATION_PATH . '/controllers/BaseController.php';
 require_once APPLICATION_PATH . '/models/entities/User.php';
 require_once APPLICATION_PATH . '/models/logics/TaskLogic.php';
-require_once APPLICATION_PATH . '/utilities/LoginCheck.php';
-require_once APPLICATION_PATH . '/utilities/Log.php';
+require_once APPLICATION_PATH . '/utilities/SessionData.php';
 
 class HomeController extends BaseController
 {
-    private ?string $userId = null;
-
     public function preDispatch(): void
     {
         parent::preDispatch();
 
         // Login check
-        $user = LoginCheck::getUserInSession();
-        $isLogin = false;
-        if (!is_null($user)) {
-            $this->userId = $user->getUserId();
-            $isLogin = true;
-        }
-
-        // log
-        Log::getLogWriter()->log(
-            Log::getMessage($this->userId, LOG_ACCESS . ', ' . $_SERVER['REQUEST_URI']),
-            Zend_Log::INFO
-        );
-
-        if (!$isLogin) {
+        $user = SessionData::getUserInSession();
+        if (is_null($user)) {
             $this->_redirect('/kanban/welcome/signin');
         }
     }
     
     public function indexAction(): void
     {
-        $allTasks = TaskLogic::getAllTasks($this->userId);
+        $userId = SessionData::getUserIdInSession();
+        $allTasks = TaskLogic::getAllTasks($userId);
         $this->view->assign('isLogin', '1');
         $this->view->assign('taskStatus', array(TASK_TO_DO, TASK_IN_PROGRESS, TASK_DONE));
         $this->view->assign('allTasks', $allTasks);
@@ -54,7 +40,8 @@ class HomeController extends BaseController
             $taskStatus = $this->_getParam(TASK_STATUS);
 
             // Update a task on DB
-            if (TaskLogic::updateTask($this->userId, $taskId, $taskTitle, $taskContent, $taskStatus)) {// Success
+            $userId = SessionData::getUserIdInSession();
+            if (TaskLogic::updateTask($userId, $taskId, $taskTitle, $taskContent, $taskStatus)) {// Success
                 $this->_redirect('/kanban/home/index');
                 return;
             } else {// Failure
@@ -75,7 +62,8 @@ class HomeController extends BaseController
             $taskStatus = $this->_getParam(TASK_STATUS);
 
             // Register new task to DB
-            if (TaskLogic::registerTask($this->userId, $taskTitle, $taskContent, $taskStatus)) {// Success in registering a new task
+            $userId = SessionData::getUserIdInSession();
+            if (TaskLogic::registerTask($userId, $taskTitle, $taskContent, $taskStatus)) {// Success in registering a new task
                 $this->_redirect('/kanban/home/index');
                 return;
             } else {// Failure
@@ -93,7 +81,8 @@ class HomeController extends BaseController
             $taskId = $this->_getParam(TASK_ID);
 
             // Delete the task on DB
-            if (TaskLogic::deleteTask($this->userId, $taskId)) {// Success in deleting the task
+            $userId = SessionData::getUserIdInSession();
+            if (TaskLogic::deleteTask($userId, $taskId)) {// Success in deleting the task
                 $this->_redirect('/kanban/home/index');
                 return;
             } else {// Failure
