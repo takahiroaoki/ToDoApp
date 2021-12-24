@@ -1,7 +1,7 @@
 # ZendSample
 
 ## Overview
-This is the sample project using [Zend Framework 1.8.5](https://framework.zend.com/downloads/archives) and [Smarty 3.1.11](https://www.smarty.net/page3).
+This is a "To Do" application using [Zend Framework 1.8.5](https://framework.zend.com/downloads/archives) and [Smarty 3.1.11](https://www.smarty.net/page3).
 
 This application is executed in docker containers and edited through Remote Development extention of [VSCode](https://azure.microsoft.com/ja-jp/products/visual-studio-code/).
 
@@ -13,7 +13,7 @@ This application is executed in docker containers and edited through Remote Deve
 
 ## How to use
 1. Open ZendSample folder (i.e. this project itself) in containers through Remote Development extention of VSCode.
-2. Execute the following command in the container for PHP in order to grant writing for Smarty.
+2. Execute the following command in the container for PHP in order to grant write permission to Smarty.
    ```
    $ chmod -R 777 /var/www/html/ZendSample/cache/
    ```
