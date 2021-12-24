@@ -1,25 +1,25 @@
 <?php
-// Define constants
+// Define global variables(constants)
 
 // User
-define('USERS', 'users');
-define('USER_ID', 'user_id');
-define('USER_EMAIL', 'user_email');
-define('USER_PASSWORD', 'user_password');
+$GLOBALS['USERS'] = 'users';
+$GLOBALS['USER_ID'] = 'user_id';
+$GLOBALS['USER_EMAIL'] = 'user_email';
+$GLOBALS['USER_PASSWORD'] = 'user_password';
 
 // Task
-define('TASKS', 'tasks');
-define('TASK_ID', 'task_id');
-define('TASK_TITLE', 'task_title');
-define('TASK_CONTENT', 'task_content');
-define('TASK_STATUS', 'task_status');
-define('TASK_TO_DO', 'To do');
-define('TASK_IN_PROGRESS', 'In progress');
-define('TASK_DONE', 'Done');
+$GLOBALS['TASKS'] = 'tasks';
+$GLOBALS['TASK_ID'] = 'task_id';
+$GLOBALS['TASK_TITLE'] = 'task_title';
+$GLOBALS['TASK_CONTENT'] = 'task_content';
+$GLOBALS['TASK_STATUS'] = 'task_status';
+$GLOBALS['TASK_TO_DO'] = 'To do';
+$GLOBALS['TASK_IN_PROGRESS'] = 'In progress';
+$GLOBALS['TASK_DONE'] = 'Done';
 
 // Log
-define('LOG_PATH', APPLICATION_PATH . '/../log/app.log');
-define('LOG_ACCESS', 'ACCESS');
+$GLOBALS['LOG_PATH'] = APPLICATION_PATH . '/../log/app.log';
+$GLOBALS['LOG_ACCESS'] = 'ACCESS';
 
 // Namespace of session
-define('DEFAULT_NAMESPACE', 'default_namespace');
+$GLOBALS['DEFAULT_NAMESPACE'] = 'default_namespace';

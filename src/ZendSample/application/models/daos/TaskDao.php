@@ -28,12 +28,12 @@ class TaskDao extends BaseDao
     public function getAllTasks(string $userId): array
     {
         // If there are no tasks on DB, return array()
-        $query = 'SELECT * FROM ' . TASKS . ' WHERE ' . USER_ID . ' = ?;';
+        $query = 'SELECT * FROM ' . $GLOBALS['TASKS'] . ' WHERE ' . $GLOBALS['USER_ID'] . ' = ?;';
         $result = $this->db->fetchAll($query, $userId);
         
         $allTasks = array();
         foreach ($result as $row) {
-            $task = new Task($row[TASK_ID], $row[TASK_TITLE], $row[TASK_CONTENT], $row[TASK_STATUS]);
+            $task = new Task($row[$GLOBALS['TASK_ID']], $row[$GLOBALS['TASK_TITLE']], $row[$GLOBALS['TASK_CONTENT']], $row[$GLOBALS['TASK_STATUS']]);
             array_push($allTasks, $task);
         }
         return $allTasks;
@@ -42,16 +42,16 @@ class TaskDao extends BaseDao
     public function updateTask(string $userId, string $taskId, string $taskTitle, string $taskContent, string $taskStatus): bool
     {
         $taskData = array(
-            TASK_TITLE => $taskTitle,
-            TASK_CONTENT => $taskContent,
-            TASK_STATUS => $taskStatus
+            $GLOBALS['TASK_TITLE'] => $taskTitle,
+            $GLOBALS['TASK_CONTENT'] => $taskContent,
+            $GLOBALS['TASK_STATUS'] => $taskStatus
         );
         $where = array(
-            USER_ID . ' = ' . $userId,
-            TASK_ID . ' = ' . $taskId
+            $GLOBALS['USER_ID'] . ' = ' . $userId,
+            $GLOBALS['TASK_ID'] . ' = ' . $taskId
         );
         try {
-            $n = $this->db->update(TASKS, $taskData, $where);
+            $n = $this->db->update($GLOBALS['TASKS'], $taskData, $where);
             if ($n == 1) {
                 $isSuccess = true;
             } else {
@@ -66,13 +66,13 @@ class TaskDao extends BaseDao
     public function registerTask(string $userId, string $taskTitle, string $taskContent, string $taskStatus): bool
     {
         $taskData = array(
-            USER_ID => $userId,
-            TASK_TITLE => $taskTitle,
-            TASK_CONTENT => $taskContent,
-            TASK_STATUS => $taskStatus
+            $GLOBALS['USER_ID'] => $userId,
+            $GLOBALS['TASK_TITLE'] => $taskTitle,
+            $GLOBALS['TASK_CONTENT'] => $taskContent,
+            $GLOBALS['TASK_STATUS'] => $taskStatus
         );
         try {
-            $this->db->insert(TASKS, $taskData);
+            $this->db->insert($GLOBALS['TASKS'], $taskData);
             $isSuccess = true;
         } catch (Exception $e) {
             $isSuccess = false;
@@ -83,11 +83,11 @@ class TaskDao extends BaseDao
     public function deleteTask(string $userId, string $taskId): bool
     {
         $where = array(
-            USER_ID . ' = ' . $userId,
-            TASK_ID . ' = ' . $taskId
+            $GLOBALS['USER_ID'] . ' = ' . $userId,
+            $GLOBALS['TASK_ID'] . ' = ' . $taskId
         );
         try {
-            $n = $this->db->delete(TASKS, $where);
+            $n = $this->db->delete($GLOBALS['TASKS'], $where);
             if ($n == 1) {
                 $isSuccess = true;
             } else {

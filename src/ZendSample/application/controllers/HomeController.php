@@ -16,14 +16,21 @@ class HomeController extends BaseController
         if (is_null($user)) {
             $this->_redirect('/kanban/welcome/signin');
         }
+        $this->view->assign('isLogin', true);
     }
     
     public function indexAction(): void
     {
         $userId = SessionData::getUserIdInSession();
         $allTasks = TaskLogic::getAllTasks($userId);
-        $this->view->assign('isLogin', '1');
-        $this->view->assign('taskStatus', array(TASK_TO_DO, TASK_IN_PROGRESS, TASK_DONE));
+        $this->view->assign(
+            'taskStatus',
+            array(
+                $GLOBALS['TASK_TO_DO'],
+                $GLOBALS['TASK_IN_PROGRESS'],
+                $GLOBALS['TASK_DONE']
+            )
+        );
         $this->view->assign('allTasks', $allTasks);
         return;
     }
@@ -34,10 +41,10 @@ class HomeController extends BaseController
             $this->_redirect('/kanban/home/index');
             return;
         } else {// Update a task and to home page
-            $taskId = $this->_getParam(TASK_ID);
-            $taskTitle = $this->_getParam(TASK_TITLE);
-            $taskContent = $this->_getParam(TASK_CONTENT);
-            $taskStatus = $this->_getParam(TASK_STATUS);
+            $taskId = $this->_getParam($GLOBALS['TASK_ID']);
+            $taskTitle = $this->_getParam($GLOBALS['TASK_TITLE']);
+            $taskContent = $this->_getParam($GLOBALS['TASK_CONTENT']);
+            $taskStatus = $this->_getParam($GLOBALS['TASK_STATUS']);
 
             // Update a task on DB
             $userId = SessionData::getUserIdInSession();
@@ -57,9 +64,9 @@ class HomeController extends BaseController
         if ($this->getRequest()->isGet()) {// To new task page
             return;
         } else {// Register new task and to home page
-            $taskTitle = $this->_getParam(TASK_TITLE);
-            $taskContent = $this->_getParam(TASK_CONTENT);
-            $taskStatus = $this->_getParam(TASK_STATUS);
+            $taskTitle = $this->_getParam($GLOBALS['TASK_TITLE']);
+            $taskContent = $this->_getParam($GLOBALS['TASK_CONTENT']);
+            $taskStatus = $this->_getParam($GLOBALS['TASK_STATUS']);
 
             // Register new task to DB
             $userId = SessionData::getUserIdInSession();
@@ -78,7 +85,7 @@ class HomeController extends BaseController
         if ($this->getRequest()->isGet()) {// Redirect to indexAction
             $this->_redirect('/kanban/home/index');
         } else {// Delete the task
-            $taskId = $this->_getParam(TASK_ID);
+            $taskId = $this->_getParam($GLOBALS['TASK_ID']);
 
             // Delete the task on DB
             $userId = SessionData::getUserIdInSession();

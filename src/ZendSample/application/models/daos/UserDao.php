@@ -27,13 +27,17 @@ class UserDao extends BaseDao
 
     public function searchUser(string $userEmail): ?User
     {
-        $query = 'SELECT * FROM ' . USERS . ' WHERE ' . USER_EMAIL . ' = ?;';
+        $query = 'SELECT * FROM ' . $GLOBALS['USERS'] . ' WHERE ' . $GLOBALS['USER_EMAIL'] . ' = ?;';
         $result = $this->db->fetchRow($query, $userEmail);
         
-        if (is_null($result[USER_ID])) {// If not registered, return null
+        if (is_null($result[$GLOBALS['USER_ID']])) {// If not registered, return null
             $registeredUser = null;
         } else {
-            $registeredUser = new User($result[USER_ID], $result[USER_EMAIL], $result[USER_PASSWORD]);
+            $registeredUser = new User(
+                $result[$GLOBALS['USER_ID']],
+                $result[$GLOBALS['USER_EMAIL']],
+                $result[$GLOBALS['USER_PASSWORD']]
+            );
         }
         return $registeredUser;
     }
@@ -41,12 +45,12 @@ class UserDao extends BaseDao
     public function registerUser(string $userEmail, string $userPassword): bool
     {
         $userData = array(
-            USER_EMAIL => $userEmail,
-            USER_PASSWORD => $userPassword
+            $GLOBALS['USER_EMAIL'] => $userEmail,
+            $GLOBALS['USER_PASSWORD'] => $userPassword
         );
 
         try {
-            $this->db->insert(USERS, $userData);
+            $this->db->insert($GLOBALS['USERS'], $userData);
             $isSuccess = true;
         } catch (Exception $e) {
             $isSuccess = false;

@@ -1,6 +1,9 @@
-# mysql directory
-/mysql/*
-!/mysql/db_init
+# db
+## mysql directory
+db/mysql/*
+!db/mysql/.gitkeep
+## log data
+db/log/app.log
 
-# log data
-/log/app.log
+# Smarty compiled files
+/src/ZendSample/cache/*.php

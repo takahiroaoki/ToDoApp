@@ -7,7 +7,7 @@ class SessionData
 {
     public static function getUserInSession(): ?User
     {
-        $defaultNamespace = SessionNamespace::getInstance()->getNamespace(DEFAULT_NAMESPACE);
+        $defaultNamespace = SessionNamespace::getInstance()->getNamespace($GLOBALS['DEFAULT_NAMESPACE']);
         $user = $defaultNamespace->user;
         if (!is_null($user)) {
             $user = User::cast(unserialize($user));

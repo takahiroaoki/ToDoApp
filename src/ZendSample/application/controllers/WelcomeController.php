@@ -21,7 +21,7 @@ class WelcomeController extends BaseController
             $this->_redirect('/kanban/home/index');
             return;
         }
-
+        
         // If GET method
         if ($this->getRequest()->isGet()) {
             // To signin page
@@ -30,15 +30,15 @@ class WelcomeController extends BaseController
 
         // If POST method
         // Sign in process
-        $userEmail = $this->_getParam(USER_EMAIL);
-        $userPassword = $this->_getParam(USER_PASSWORD);
+        $userEmail = $this->_getParam($GLOBALS['USER_EMAIL']);
+        $userPassword = $this->_getParam($GLOBALS['USER_PASSWORD']);
         $user = UserLogic::searchUser($userEmail, $userPassword);
         if (is_null($user)) {
             // Redirect to sign-in page
             $this->_redirect('/kanban/welcome/signin');
             return;
         }
-        $defaultNamespace = SessionNamespace::getInstance()->getNamespace(DEFAULT_NAMESPACE);
+        $defaultNamespace = SessionNamespace::getInstance()->getNamespace($GLOBALS['DEFAULT_NAMESPACE']);
         $defaultNamespace->user = serialize($user);
         
         // Redirect to user's home page
@@ -70,9 +70,9 @@ class WelcomeController extends BaseController
 
         // If POST method
         // Sign up process
-        $userEmail = $this->_getParam(USER_EMAIL);
-        $userPassword = $this->_getParam(USER_PASSWORD);
-
+        $userEmail = $this->_getParam($GLOBALS['USER_EMAIL']);
+        $userPassword = $this->_getParam($GLOBALS['USER_PASSWORD']);
+        
         if (UserLogic::registerUser($userEmail, $userPassword)) {
             // If registering is success, redirect to sign in page
             $this->_redirect('/kanban/welcome/signin');
