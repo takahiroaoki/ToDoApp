@@ -8,7 +8,7 @@ class Log
     {
         if (is_null($logger)) {
             $logger = new Zend_Log(
-                new Zend_Log_Writer_Stream(LOG_PATH)
+                new Zend_Log_Writer_Stream($GLOBALS['LOG_PATH'])
             );
         }
         
