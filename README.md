@@ -1,4 +1,4 @@
-# ZendSample
+# ToDoApp
 
 ## Overview
 This is a "To Do" application using [Zend Framework 1.8.5](https://framework.zend.com/downloads/archives) and [Smarty 3.1.11](https://www.smarty.net/page3).
