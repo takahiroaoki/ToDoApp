@@ -12,7 +12,11 @@ This application is executed in docker containers and edited through Remote Deve
 - VSCode with the extention of Remote Development 0.21.0
 
 ## How to use
-1. Open ZendSample folder (i.e. this project itself) in containers through Remote Development extention of VSCode.
+1. Open ToDoApp folder (i.e. this project itself) in containers through Remote Development extention of VSCode with Docker Desktop booted up. Or, execute the following command.
+   ```
+   # @project root
+   $ docker-compose up
+   ```
 2. Execute the following command in the container for PHP in order to grant write permission to Smarty.
    ```
    $ chmod -R 777 /var/www/html/ZendSample/cache/
