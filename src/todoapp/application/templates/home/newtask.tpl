@@ -14,7 +14,7 @@
     <div class="container page-title">
         <h1>Let me know your new task.</h1>
     </div>
-    <div class="container">
+    <div class="container form-container">
         <div class="d-grid gap-3 col-4 mx-auto">
             <form method="POST" action="/kanban/home/newtask">
                 <input class="form-control" type="text" placeholder="Title" name="{$TASK_TITLE}"><br>
@@ -24,17 +24,23 @@
                     <option value="{$TASK_IN_PROGRESS}">{$TASK_IN_PROGRESS}</option>
                     <option value="{$TASK_DONE}">{$TASK_DONE}</option>
                 </select><br>
-                <input class="btn btn-primary" type="submit" value="Register">
+                <input class="form-control btn btn-primary" type="submit" value="Register">
             </form>
         </div>
     </div>
     <br>
     <div class="container">
-        <div class="d-grid gap-3 col-2 mx-auto">
-            <a class="btn btn-primary" href="/kanban/home/index" role="button">Back to home</a>
+        <div class="another-page">
+            <p>Do you quit to make a new task?</p>
+            <a href="/kanban/home/index">Back to home</a>
         </div>
     </div>
 </div>
+
+<!-- style -->
+<style>
+    {include file="../../css/home/newtask.css"}
+</style>
 {/block}
 
 <!-- inside <script></script> -->

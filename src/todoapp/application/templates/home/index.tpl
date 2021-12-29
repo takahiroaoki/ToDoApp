@@ -14,62 +14,67 @@
     <div class="container page-title">
         <h1>Your Tasks</h1>
     </div>
-    <div class="container">
+    <div class="container newtask-button">
         <div class="d-grid d-md-flex justify-content-md-end">
             <a class="btn btn-primary" href="/kanban/home/newtask" role="button">New task</a>
         </div>
     </div>
-    <div class="container">
+    <div class="container card-area">
         <div class="row align-items-start">
         {foreach from=$taskStatus item=status}
-            <div class="col">
-                <h2 class="fs-2">{$status}</h2>
+            <div class="col task-col">
+                <h2 class="fs-2 task-status">{$status}</h2>
             {foreach from from=$allTasks item=task}
                 {if $task->getTaskStatus() == $status}
-                <div class="card bg-light border border-dark">
-                    <div>
-                        <div class="card-body">
-                            <div class="card-title fs-4">
-                                {$task->getTaskTitle()}
-                            </div>
-                            <hr>
-                            <div class="card-text fs-5">
-                                {$task->getTaskContent()}
-                            </div>
-                            <div class="card-text fs-5">
-                                {$task->getTaskStatus()}
-                            </div>
+                <div class="card bg-light border border-dark task-card">
+                    <div class="card-body">
+                        <div class="card-title fs-4 task-title">
+                            <span class="notation">Title</span>
+                            {$task->getTaskTitle()}
                         </div>
-                        <div class="d-grid col-1">
+                        <hr>
+                        <div class="card-text fs-5">
+                            <span class="notation">Content</span>
+                            {$task->getTaskContent()}
+                        </div>
+                    </div>
+                    <div class="card-button-area">
+                        <span class="card-button">
                             <a
-                            class="btn btn-success btn-sm"
+                            class="btn btn-success"
                             data-bs-toggle="collapse"
                             href="#id_{$task->getTaskId()}"
                             role="button"
                             aria-expanded="false"
-                            >
-                                Edit
-                            </a>
-                        </div>
-                        <div class="d-grid col-1">
+                            >Edit</a>
+                        </span>
+                        <span class="card-button">
                             <form method="POST" action="/kanban/home/deletetask">
                                 <input type="hidden" name="task_id" value="{$task->getTaskId()}">
-                                <input class="btn btn-secondary btn-sm" type="submit" value="Delete">
+                                <input class="btn btn-secondary" type="submit" value="Delete">
                             </form>
-                        </div>
+                        </span>
                     </div>
                     <!-- [START] Shown when 'Edit' button is pushed -->
-                    <div class="collapse" id="id_{$task->getTaskId()}">
+                    <div class="collapse collapsed-area" id="id_{$task->getTaskId()}">
                         <form method="POST" action="/kanban/home/updatetask">
                             <input type="hidden" name="task_id" value="{$task->getTaskId()}">
+                            
+                            <span class="notation">Title</span>
                             <input class="form-control" type="text" name="task_title" value="{$task->getTaskTitle()}" ><br>
+                            
+                            <span class="notation">Content</span>
                             <input class="form-control" type="text" name="task_content" value="{$task->getTaskContent()}" ><br>
+                            
+                            <span class="notation">Status</span>
                             <select class="form-select" name="task_status">
                                 <option value="{$TASK_TO_DO}"{if $task->getTaskStatus() == $TASK_TO_DO} selected{/if}>{$TASK_TO_DO}</option>
                                 <option value="{$TASK_IN_PROGRESS}"{if $task->getTaskStatus() == $TASK_IN_PROGRESS} selected{/if}>{$TASK_IN_PROGRESS}</option>
                                 <option value="{$TASK_DONE}"{if $task->getTaskStatus() == $TASK_DONE} selected{/if}>{$TASK_DONE}</option>
                             </select><br>
+                            <div class="update-button">
                             <input class="btn btn-success" type="submit" value="Update">
+                            </div>
                         </form>
                     </div>
                     <!-- [END] Shown when 'Edit' button is pushed -->
@@ -81,6 +86,11 @@
         </div>
     </div>
 </div>
+
+<!-- style -->
+<style>
+    {include file="../../css/home/index.css"}
+</style>
 {/block}
 
 <!-- inside <script></script> -->

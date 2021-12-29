@@ -19,17 +19,22 @@
             <form method="POST" action="/kanban/welcome/signup">
                 <input class="form-control" type="email" placeholder="Email" name="{$USER_EMAIL}"><br>
                 <input class="form-control" type="password" placeholder="Password" name="{$USER_PASSWORD}"><br>
-                <input class="btn btn-primary" type="submit" value="Sign up">
+                <input class="form-control btn btn-primary" type="submit" value="Sign up">
             </form>
         </div>
     </div>
     <div class="container">
-        <div>
+        <div class="another-page">
             <p>Do you have your own account?</p>
-            <a class="btn btn-primary" href="/kanban/welcome/signin" role="button">Sign in</a>
+            <a href="/kanban/welcome/signin">Sign in</a>
         </div>
     </div>
 </div>
+
+<!-- style -->
+<style>
+    {include file="../../css/welcome/signup.css"}
+</style>
 {/block}
 
 <!-- inside <script></script> -->
