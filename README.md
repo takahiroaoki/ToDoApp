@@ -1,4 +1,4 @@
-# ToDoApp
+# to-do-app
 
 ## Overview
 This is a "To Do" application using [Zend Framework 1.8.5](https://framework.zend.com/downloads/archives) and [Smarty 3.1.11](https://www.smarty.net/page3).
@@ -12,7 +12,7 @@ This application is executed in docker containers and edited through Remote Deve
 - VSCode with the extention of Remote Development 0.21.0
 
 ## How to use
-1. Open ToDoApp folder (i.e. this project itself) in containers through Remote Development extention of VSCode with Docker Desktop booted up. Or, execute the following command.
+1. Open to-do-app folder (i.e. this project itself) in containers through Remote Development extention of VSCode with Docker Desktop booted up. Or, execute the following command.
    ```
    # @project root
    $ docker-compose up
