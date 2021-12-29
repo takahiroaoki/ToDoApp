@@ -15,6 +15,17 @@
         <h1>This is the Sign-in page.</h1>
     </div>
     <div class="container form-container">
+        <!-- [START] error message area -->
+        {if !is_null($errMsg)}
+        <div class="container error-message-area">
+            {foreach from=$errMsg item=msg}
+            <p>
+                {$msg}
+            </p>
+            {/foreach}
+        </div>
+        {/if}
+        <!-- [END] error message area -->
         <div class="d-grid gap-3 col-4 mx-auto">
             <form method="POST" action="/kanban/welcome/signin">
                 <input class="form-control" type="email" placeholder="Email" name="{$USER_EMAIL}"><br>

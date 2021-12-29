@@ -38,12 +38,15 @@ class WelcomeController extends BaseController
         $userPassword = $this->_getParam($GLOBALS['USER_PASSWORD']);
         $user = UserLogic::searchUser($userEmail, $userPassword);
         if (is_null($user)) {
+            // Put error message in session
+            $errMsg = 'Wrong combination of e-mail and password';
+            SessionData::putErrMsgInsession($errMsg);
             // Redirect to sign-in page
             $this->_redirect('/kanban/welcome/signin');
             return;
         }
-        $defaultNamespace = SessionNamespace::getInstance()->getNamespace($GLOBALS['DEFAULT_NAMESPACE']);
-        $defaultNamespace->user = serialize($user);
+        // Put user in session
+        SessionData::putUserInSession($user);
         
         // Redirect to user's home page
         $this->_redirect('/kanban/home/index');
@@ -74,6 +77,8 @@ class WelcomeController extends BaseController
             // If registering is success, redirect to sign in page
             $this->_redirect('/kanban/welcome/signin');
         } else {// If failure to sign up page again
+            $errMsg = 'This e-mail address is already registered';
+            SessionData::putErrMsgInsession($errMsg);
             $this->_redirect('/kanban/welcome/signup');
         }
     }
