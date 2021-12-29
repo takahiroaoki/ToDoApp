@@ -19,7 +19,7 @@ This application is executed in docker containers and edited through Remote Deve
    ```
 2. Execute the following command in the container for PHP in order to grant write permission to Smarty.
    ```
-   $ chmod -R 777 /var/www/html/ZendSample/cache/
+   $ chmod -R 777 /var/www/html/todoapp/cache/
    ```
 3. Initialize the database in the container for MySQL.
    ```

@@ -15,8 +15,8 @@ class HomeController extends BaseController
         $user = SessionData::getUserInSession();
         if (is_null($user)) {
             $this->_redirect('/kanban/welcome/signin');
+            return;
         }
-        $this->view->assign('isLogin', true);
     }
     
     public function indexAction(): void

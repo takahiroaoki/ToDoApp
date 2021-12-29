@@ -5,9 +5,9 @@ services:
     build: .
     volumes:
       - ./src:/var/www/html
-      - ./000-default.conf:/etc/apache2/sites-available/000-default.conf
-      - ./php.ini:/usr/local/etc/php/php.ini
-      - ./db/log:/var/www/html/ZendSample/log
+      - ./configs/000-default.conf:/etc/apache2/sites-available/000-default.conf
+      - ./configs/php.ini:/usr/local/etc/php/php.ini
+      - ./db/log:/var/www/html/todoapp/log
     ports:
       - 8080:80
     tty: true
