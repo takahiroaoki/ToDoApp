@@ -14,22 +14,22 @@
     <div class="container page-title">
         <h1>Your Tasks</h1>
     </div>
-    <div class="container">
+    <div class="container newtask-button">
         <div class="d-grid d-md-flex justify-content-md-end">
             <a class="btn btn-primary" href="/kanban/home/newtask" role="button">New task</a>
         </div>
     </div>
-    <div class="container">
+    <div class="container card-area">
         <div class="row align-items-start">
         {foreach from=$taskStatus item=status}
             <div class="col">
-                <h2 class="fs-2">{$status}</h2>
+                <h2 class="fs-2 task-status">{$status}</h2>
             {foreach from from=$allTasks item=task}
                 {if $task->getTaskStatus() == $status}
-                <div class="card bg-light border border-dark">
+                <div class="card bg-light border border-dark task-card">
                     <div>
                         <div class="card-body">
-                            <div class="card-title fs-4">
+                            <div class="card-title fs-4 task-title">
                                 {$task->getTaskTitle()}
                             </div>
                             <hr>
@@ -81,6 +81,11 @@
         </div>
     </div>
 </div>
+
+<!-- style -->
+<style>
+    {include file="../../css/home/index.css"}
+</style>
 {/block}
 
 <!-- inside <script></script> -->

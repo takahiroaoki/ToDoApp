@@ -12,15 +12,20 @@
 {block name="content"}
 <div class="content">
     <div class="container page-title">
-        <h1>Your Kanban will simpliry your busy life.</h1>
+        <h1>Your Kanban will simplify your busy life.</h1>
     </div>
-    <div class="container">
+    <div class="container sign-in-up-page">
         <div class="d-grid gap-3 col-3 mx-auto">
             <a class="btn btn-primary btn-sm" href="/kanban/welcome/signin" role="button">Sign in</a>
             <a class="btn btn-primary btn-sm" href="/kanban/welcome/signup" role="button">Sign up</a>
         </div>
     </div>
 </div>
+
+<!-- style -->
+<style>
+    {include file="../../css/welcome/index.css"}
+</style>
 {/block}
 
 <!-- inside <script></script> -->

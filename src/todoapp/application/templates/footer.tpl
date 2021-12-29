@@ -3,4 +3,9 @@
     <hr class="bg-primary">
     <p>© To Do App 2021</p>
 </div>
+
+<!-- style -->
+<style>
+    {include file="../css/footer.css"}
+</style>
 {/block}
