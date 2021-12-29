@@ -8,6 +8,17 @@ require_once APPLICATION_PATH . '/utilities/SessionData.php';
 
 class WelcomeController extends BaseController
 {
+    public function preDispatch(): void
+    {
+        parent::preDispatch();
+
+        // redirect rule
+        if ($this->shouldRedirect()) {
+            $this->_redirect('/kanban/home/index');
+            return;
+        }
+    }
+
     public function indexAction(): void
     {
         return;
@@ -15,13 +26,6 @@ class WelcomeController extends BaseController
 
     public function signinAction(): void
     {
-        // If the user already signs in, redirect to home.
-        $user = SessionData::getUserInSession();
-        if (!is_null($user)) {
-            $this->_redirect('/kanban/home/index');
-            return;
-        }
-        
         // If GET method
         if ($this->getRequest()->isGet()) {
             // To signin page
@@ -55,13 +59,6 @@ class WelcomeController extends BaseController
 
     public function signupAction(): void
     {
-        // If the user already signs in, redirect to home.
-        $user = SessionData::getUserInSession();
-        if (!is_null($user)) {
-            $this->_redirect('/kanban/home/index');
-            return;
-        }
-
         // If GET method
         if ($this->getRequest()->isGet()) {
             // To signup page
@@ -79,5 +76,18 @@ class WelcomeController extends BaseController
         } else {// If failure to sign up page again
             $this->_redirect('/kanban/welcome/signup');
         }
+    }
+
+    private function shouldRedirect(): bool
+    {
+        // If the user already signs in, we would not let them access to signin or signup page again.
+        $user = SessionData::getUserInSession();
+        $action = $this->getRequest()->getActionName();
+        if (!is_null($user) && (strcmp($action, 'signin') == 0 || strcmp($action, 'signup') == 0)) {
+            $shouldRedirect = true;
+        } else {
+            $shouldRedirect = false;
+        }
+        return $shouldRedirect;
     }
 }

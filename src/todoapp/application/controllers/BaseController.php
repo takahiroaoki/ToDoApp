@@ -8,6 +8,11 @@ class BaseController extends Zend_Controller_Action
     {
         parent::preDispatch();
         
+        // Enable to use global variables in template files.
+        foreach ($GLOBALS as $key => $value) {
+            $this->view->assign($key, $value);
+        }
+
         // regenerate session ID in every request
         Zend_Session::regenerateId();
 
@@ -18,9 +23,7 @@ class BaseController extends Zend_Controller_Action
             Zend_Log::INFO
         );
 
-        // Enable to use global variables in template files.
-        foreach ($GLOBALS as $key => $value) {
-            $this->view->assign($key, $value);
-        }
+        // login check for template
+        $this->view->assign('isLogin', !is_null($userId));
     }
 }
