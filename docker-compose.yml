@@ -7,7 +7,7 @@ services:
       - ./src:/var/www/html
       - ./configs/000-default.conf:/etc/apache2/sites-available/000-default.conf
       - ./configs/php.ini:/usr/local/etc/php/php.ini
-      - ./db/log:/var/www/html/ZendSample/log
+      - ./db/log:/var/www/html/todoapp/log
     ports:
       - 8080:80
     tty: true

@@ -6,4 +6,4 @@ db/mysql/*
 db/log/app.log
 
 # Smarty compiled files
-/src/ZendSample/cache/*.php
+/src/todoapp/cache/*.php

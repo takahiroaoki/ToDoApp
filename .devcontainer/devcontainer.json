@@ -2,7 +2,7 @@
     "runArgs": ["--init"],
     "dockerComposeFile": "../docker-compose.yml",
     "service": "php",
-	"workspaceFolder": "/var/www/html/ZendSample",
+	"workspaceFolder": "/var/www/html/todoapp",
 	"extensions": [
 		"felixfbecker.php-pack",
 		"abusaidm.html-snippets",
