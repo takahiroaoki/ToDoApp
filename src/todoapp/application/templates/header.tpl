@@ -8,7 +8,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0 fs-6">
+            <ul class="navbar-nav fs-6">
                 {if $isLogin}
                 <li class="nav-item">
                     <a class="nav-link active" href="/kanban/welcome/signout">Sign out</a>
@@ -25,4 +25,9 @@
         </div>
     </div>
 </nav>
+
+<!-- style -->
+<style>
+    {include file="../css/header.css"}
+</style>
 {/block}
