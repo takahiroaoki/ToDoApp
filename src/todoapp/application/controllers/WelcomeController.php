@@ -39,7 +39,7 @@ class WelcomeController extends BaseController
         $user = UserLogic::searchUser($userEmail, $userPassword);
         if (is_null($user)) {
             // Put error message in session
-            $errMsg = 'Wrong combination of e-mail and password';
+            $errMsg = 'Failure: Maybe, wrong combination of e-mail and password';
             SessionData::putErrMsgInsession($errMsg);
             // Redirect to sign-in page
             $this->_redirect('/kanban/welcome/signin');
@@ -77,7 +77,7 @@ class WelcomeController extends BaseController
             // If registering is success, redirect to sign in page
             $this->_redirect('/kanban/welcome/signin');
         } else {// If failure to sign up page again
-            $errMsg = 'This e-mail address is already registered';
+            $errMsg = 'Failure: Maybe, this e-mail address is already registered';
             SessionData::putErrMsgInsession($errMsg);
             $this->_redirect('/kanban/welcome/signup');
         }

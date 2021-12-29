@@ -30,12 +30,12 @@
                     <div class="card-body">
                         <div class="card-title fs-4 task-title">
                             <span class="notation">Title</span>
-                            {$task->getTaskTitle()}
+                            {$task->getTaskTitle()|escape}
                         </div>
                         <hr>
                         <div class="card-text fs-5">
                             <span class="notation">Content</span>
-                            {$task->getTaskContent()}
+                            {$task->getTaskContent()|escape}
                         </div>
                     </div>
                     <div class="card-button-area">
@@ -61,10 +61,10 @@
                             <input type="hidden" name="task_id" value="{$task->getTaskId()}">
                             
                             <span class="notation">Title</span>
-                            <input class="form-control" type="text" name="task_title" value="{$task->getTaskTitle()}" ><br>
+                            <input class="form-control" type="text" name="task_title" value="{$task->getTaskTitle()|escape}" ><br>
                             
                             <span class="notation">Content</span>
-                            <input class="form-control" type="text" name="task_content" value="{$task->getTaskContent()}" ><br>
+                            <input class="form-control" type="text" name="task_content" value="{$task->getTaskContent()|escape}" ><br>
                             
                             <span class="notation">Status</span>
                             <select class="form-select" name="task_status">
