@@ -44,7 +44,7 @@
 
 <!-- style -->
 <style>
-    {include file="../../css/welcome/signup.css"}
+    {include file="{$CSS_PATH}/welcome/signup.css"}
 </style>
 {/block}
 

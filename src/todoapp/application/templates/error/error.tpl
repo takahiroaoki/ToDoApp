@@ -22,6 +22,6 @@
 
 <!-- style -->
 <style>
-    {include file="../../css/error/error.css"}
+    {include file="{$CSS_PATH}/error/error.css"}
 </style>
 {/block}

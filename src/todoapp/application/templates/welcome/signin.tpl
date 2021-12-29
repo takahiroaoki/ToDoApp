@@ -43,7 +43,7 @@
 </div>
 <!-- style -->
 <style>
-    {include file="../../css/welcome/signin.css"}
+    {include file="{$CSS_PATH}/welcome/signin.css"}
 </style>
 {/block}
 
