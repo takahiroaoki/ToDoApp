@@ -11,3 +11,9 @@
     text-align: center;
     margin-top: 1rem;
 }
+
+.error-message-area {
+    text-align: center;
+    color: #ff0000;
+    font-weight: bold;
+}

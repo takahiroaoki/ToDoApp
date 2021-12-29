@@ -26,4 +26,31 @@ class SessionData
 
         return $userId;
     }
+
+    public static function putUserInSession(User $user): void
+    {
+        $defaultNamespace = SessionNamespace::getInstance()->getNamespace($GLOBALS['DEFAULT_NAMESPACE']);
+        $defaultNamespace->user = serialize($user);
+        
+        return;
+    }
+
+    public static function getErrMsgInSession(): ?array
+    {
+        $defaultNamespace = SessionNamespace::getInstance()->getNamespace($GLOBALS['DEFAULT_NAMESPACE']);
+        $errMsg = $defaultNamespace->errMsg;
+
+        // Clear error messages in session
+        $defaultNamespace->errMsg = array();
+        
+        return $errMsg;
+    }
+
+    public static function putErrMsgInSession(string $msg): void
+    {
+        $defaultNamespace = SessionNamespace::getInstance()->getNamespace($GLOBALS['DEFAULT_NAMESPACE']);
+        $defaultNamespace->errMsg[] = $msg;
+
+        return;
+    }
 }

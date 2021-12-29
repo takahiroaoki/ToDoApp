@@ -23,6 +23,12 @@ class BaseController extends Zend_Controller_Action
             Zend_Log::INFO
         );
 
+        // check error message
+        $errMsg = SessionData::getErrMsgInSession();
+        if (is_null($errMsg) || count($errMsg) > 0) {
+            $this->view->assign('errMsg', $errMsg);
+        }
+
         // login check for template
         $this->view->assign('isLogin', !is_null($userId));
     }
