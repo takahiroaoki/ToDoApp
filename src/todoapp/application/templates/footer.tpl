@@ -6,6 +6,6 @@
 
 <!-- style -->
 <style>
-    {include file="../css/footer.css"}
+    {include file="{$CSS_PATH}/footer.css"}
 </style>
 {/block}

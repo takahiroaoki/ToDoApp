@@ -28,6 +28,6 @@
 
 <!-- style -->
 <style>
-    {include file="../css/header.css"}
+    {include file="{$CSS_PATH}/header.css"}
 </style>
 {/block}

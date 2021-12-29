@@ -48,8 +48,8 @@
                             aria-expanded="false"
                             >Edit</a>
                         </span>
-                        <span class="card-button">
-                            <form method="POST" action="/kanban/home/deletetask">
+                        <span class="card-button delete-button">
+                            <form method="POST" action="/kanban/home/deletetask" onSubmit="return isOK();">
                                 <input type="hidden" name="task_id" value="{$task->getTaskId()}">
                                 <input class="btn btn-secondary" type="submit" value="Delete">
                             </form>
@@ -89,11 +89,14 @@
 
 <!-- style -->
 <style>
-    {include file="../../css/home/index.css"}
+    {include file="{$CSS_PATH}/home/index.css"}
 </style>
 {/block}
 
 <!-- inside <script></script> -->
 {block name="scriptTag"}
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+<script>
+    {include file="{$JS_PATH}/home/index.js"}
+</script>
 {/block}

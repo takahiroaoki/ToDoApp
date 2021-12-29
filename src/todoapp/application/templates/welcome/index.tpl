@@ -24,7 +24,7 @@
 
 <!-- style -->
 <style>
-    {include file="../../css/welcome/index.css"}
+    {include file="{$CSS_PATH}/welcome/index.css"}
 </style>
 {/block}
 

@@ -39,7 +39,7 @@
 
 <!-- style -->
 <style>
-    {include file="../../css/home/newtask.css"}
+    {include file="{$CSS_PATH}/home/newtask.css"}
 </style>
 {/block}
 

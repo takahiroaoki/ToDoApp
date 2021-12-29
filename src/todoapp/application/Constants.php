@@ -23,3 +23,7 @@ $GLOBALS['LOG_ACCESS'] = 'ACCESS';
 
 // Namespace of session
 $GLOBALS['DEFAULT_NAMESPACE'] = 'default_namespace';
+
+// CSS, JS
+$GLOBALS['CSS_PATH'] = APPLICATION_PATH . '/css';
+$GLOBALS['JS_PATH'] = APPLICATION_PATH . '/js';
