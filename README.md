@@ -30,6 +30,21 @@ This application is executed in docker containers and edited through Remote Deve
 4. Get access to http://localhost:8080/kanban .
 5. Sign in by Email='user@example.com' and Password='password'.
 
+## Tech stack
+### Frontend
+- HTML (converted from Smarty)
+- CSS
+- JavaScript
+- BootStrap
+
+### Backend
+- PHP
+- Zend Framework
+
+### Middle ware and infrastructure
+- Apache
+- MySQL
+- Docker
 
 ## Reference
 - [Zend Framework 徹底入門](https://www.amazon.co.jp/Zend-Framework%E5%BE%B9%E5%BA%95%E5%85%A5%E9%96%80-%E5%B1%B1%E7%94%B0-%E7%A5%A5%E5%AF%9B/dp/4798117129/ref=sr_1_1?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&crid=U4Y2V42K6CWE&keywords=zendframework&qid=1639974825&sprefix=zendframework%2Caps%2C200&sr=8-1)
