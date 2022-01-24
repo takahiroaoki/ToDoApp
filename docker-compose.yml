@@ -1,8 +1,9 @@
 version: "3"
 
 services:
-  php:
+  web:
     build: .
+    container_name: web
     volumes:
       - ./src:/var/www/html
       - ./configs/000-default.conf:/etc/apache2/sites-available/000-default.conf
@@ -11,8 +12,9 @@ services:
     ports:
       - 8080:80
     tty: true
-  mysql:
+  db:
     image: mysql:5.7
+    container_name: db
     volumes:
       - ./db/mysql:/var/lib/mysql
       - ./db/init:/db/init
@@ -21,3 +23,4 @@ services:
       - MYSQL_DATABASE=zend_db
       - MYSQL_USER=zend
       - MYSQL_PASSWORD=password
+    tty: true
