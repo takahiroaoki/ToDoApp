@@ -3,13 +3,12 @@
 ## Overview
 This is a "To Do" application using [Zend Framework 1.8.5](https://framework.zend.com/downloads/archives) and [Smarty 3.1.11](https://www.smarty.net/page3).
 
-This application is executed in docker containers and edited through Remote Development extention of [VSCode](https://azure.microsoft.com/ja-jp/products/visual-studio-code/).
+This application is executed in docker containers and developed in [VSCode](https://azure.microsoft.com/ja-jp/products/visual-studio-code/).
 
 ## Requirement
 
 - Windows 10
 - [Docker Desktop for Windows](https://www.docker.com/products/docker-desktop) 4.2.0
-- VSCode with the extention of Remote Development 0.21.0
 
 ## How to use
 1. Open to-do-app folder (i.e. this project itself) in containers through Remote Development extention of VSCode with Docker Desktop booted up. Or, execute the following command.
@@ -17,18 +16,24 @@ This application is executed in docker containers and edited through Remote Deve
    # @project root
    $ docker-compose up
    ```
-2. Execute the following command in the container for PHP in order to grant write permission to Smarty.
+2. Initialize the database in the container for MySQL.
    ```
-   $ chmod -R 777 /var/www/html/todoapp/cache/
-   ```
-3. Initialize the database in the container for MySQL.
-   ```
+   # Dive into the container named "db"
+   $ docker exec -it db /bin/bash
+
    # After type each line, type "password"
    $ mysql -u zend -p < /db/init/ddl.sql
    $ mysql -u zend -p < /db/init/data.sql
    ```
-4. Get access to http://localhost:8080/kanban .
-5. Sign in by Email='user@example.com' and Password='password'.
+3. Get access to http://localhost:8080/kanban .
+4. Sign in by Email='user@example.com' and Password='password'.
+
+## Trouble shooting
+### Write permission of Smarty
+You might be saied "Permission denied" when you get access to the web site. In that case, execute the following command in order to grant write permission to Smarty.
+```
+$ chmod -R 777 /var/www/html/todoapp/cache/
+```
 
 ## Tech stack
 ### Frontend
